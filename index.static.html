@@ -1,0 +1,1908 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DHGsoft | Industrial Automation, AI & Digital Engineering</title>
+    <meta name="description" content="DHGsoft connects industrial automation, IIoT, AI, data and digital engineering to transform industrial operations into connected, intelligent enterprises." />
+    
+    <!-- Google Fonts: Inter & Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                bg: '#FFFFFF',          // White canvas
+                offwhite: '#F5F8FC',     // Off White
+                navy: '#061426',        // Deep Navy
+                darknavy: '#0A1F36',    // Dark Navy
+                blue: '#0866FF',        // Primary Blue
+                electric: '#1677FF',    // Electric Blue
+                bright: '#2D8CFF',      // Bright Blue
+                sky: '#5DB7FF',         // Sky Blue
+                lightblue: '#EAF4FF',   // Light Blue
+                text: '#0B1726',        // Text Dark
+                gray: '#64748B',        // Secondary Gray
+                border: '#DCE6F2',      // Border
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Manrope', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Custom CSS styles for scrollbars, grids, and filters -->
+    <style type="text/css">
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F5F8FC;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #0866FF;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #1677FF;
+      }
+
+      /* Technical Grid Background Pattern */
+      .bg-dot-grid {
+        background-image: radial-gradient(rgba(8, 102, 255, 0.15) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      .bg-dot-grid-light {
+        background-image: radial-gradient(rgba(100, 116, 139, 0.08) 1.5px, transparent 1.5px);
+        background-size: 20px 20px;
+      }
+
+      /* Base Custom transitions */
+      .transition-premium {
+        transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    </style>
+
+    <!-- Alpine.js & GSAP CDNs -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body 
+    x-data="{ 
+      scrolled: false, 
+      mobileMenuOpen: false, 
+      searchOpen: false, 
+      activeMenu: null,
+      activeAccordion: null
+    }" 
+    @scroll.window="scrolled = (window.pageYOffset > 50 ? true : false)"
+    class="bg-brand-bg text-brand-text font-sans antialiased overflow-x-hidden selection:bg-brand-blue selection:text-white"
+  >
+
+    <!-- TOP SCROLL PROGRESS BAR -->
+    <div 
+      id="scroll-progress"
+      class="fixed top-0 left-0 right-0 h-1 bg-brand-electric z-50 origin-left scale-x-0"
+    ></div>
+
+    <!-- STICKY HEADER -->
+    <header 
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      :class="scrolled || activeMenu || mobileMenuOpen ? 'bg-brand-navy/95 border-b border-white/10 py-4 shadow-lg backdrop-blur-md' : 'bg-transparent py-6'"
+    >
+      <div class="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+        
+        <!-- Brand Logo / Wordmark -->
+        <a href="#" class="flex items-center gap-2.5 group">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-bright flex items-center justify-center font-bold text-white text-lg tracking-tighter shadow-md">
+            D
+          </span>
+          <span class="font-display font-extrabold text-xl md:text-2xl tracking-tight text-white">
+            DHG<span class="font-light text-brand-sky">soft</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-8 text-white/95">
+          <a href="#industries" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Industries</a>
+          <a href="#capabilities" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Capabilities</a>
+          <a href="#solutions" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Solutions</a>
+          <a href="#products" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Technology</a>
+          <a href="#differentiators" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Why DHGsoft</a>
+          <a href="#insights" class="font-medium text-sm hover:text-brand-sky transition-colors duration-300">Insights</a>
+        </nav>
+
+        <!-- Desktop Action Buttons -->
+        <div class="hidden lg:flex items-center gap-6">
+          <button 
+            @click="searchOpen = !searchOpen"
+            class="text-white/80 hover:text-brand-sky transition-colors duration-300"
+            aria-label="Search"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          
+          <!-- Search dropdown panel -->
+          <div 
+            x-show="searchOpen"
+            x-transition
+            @click.away="searchOpen = false"
+            class="absolute right-40 mt-16 p-3 bg-brand-darknavy border border-white/10 rounded-xl shadow-xl w-72"
+            style="display: none;"
+          >
+            <input 
+              type="text" 
+              placeholder="Search industrial services..." 
+              class="w-full px-4 py-2 bg-brand-navy border border-white/20 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-brand-blue"
+            />
+          </div>
+          
+          <a 
+            href="#contact" 
+            class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-brand-blue border border-brand-blue text-white px-6 py-2.5 text-sm hover:bg-brand-electric hover:border-brand-electric shadow-lg shadow-brand-blue/20"
+          >
+            Contact Us
+          </a>
+        </div>
+
+        <!-- Mobile Menu Triggers -->
+        <div class="flex items-center gap-4 lg:hidden">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white p-1" aria-label="Toggle menu">
+            <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg x-show="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display: none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MOBILE OVERLAY NAVIGATION -->
+    <div 
+      x-show="mobileMenuOpen"
+      x-transition
+      class="fixed inset-0 top-0 left-0 right-0 bottom-0 z-40 bg-brand-navy flex flex-col pt-24 px-6 pb-8 overflow-y-auto lg:hidden"
+      style="display: none;"
+    >
+      <div class="flex-1 flex flex-col gap-6 mt-6">
+        <div class="space-y-4">
+          <a href="#industries" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Industries</a>
+          <a href="#capabilities" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Capabilities</a>
+          <a href="#solutions" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Solutions</a>
+          <a href="#products" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Technology</a>
+          <a href="#differentiators" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Why DHGsoft</a>
+          <a href="#insights" @click="mobileMenuOpen = false" class="block font-semibold text-2xl text-white py-2">Insights</a>
+        </div>
+      </div>
+      <div class="mt-auto pt-6 flex flex-col gap-4">
+        <a href="#contact" @click="mobileMenuOpen = false" class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-brand-blue text-white py-4 hover:bg-brand-electric">
+          Contact Us
+        </a>
+        <div class="text-center text-xs text-white/40">© 2026 DHGsoft. All rights reserved.</div>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] lg:min-h-screen pt-28 pb-16 px-6 md:px-8 flex items-center justify-center bg-brand-navy bg-dot-grid overflow-hidden font-sans">
+      
+      <!-- Ambient Background Glows -->
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-bright/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+        
+        <!-- Left Side Text & CTAs -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left">
+          <div class="flex items-center gap-2 mb-6 hero-anim">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-bright animate-pulse"></span>
+            <span class="text-xs md:text-sm font-bold tracking-[0.25em] text-brand-sky uppercase">
+              Global Industrial Technology & Digital Engineering
+            </span>
+          </div>
+
+          <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-extrabold text-white leading-[0.95] tracking-tighter mb-8 max-w-[850px] hero-anim">
+            Connect Intelligence. <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-brand-bright">
+              Transform Industry.
+            </span>
+          </h1>
+
+          <h2 class="text-lg md:text-xl font-medium text-brand-sky/90 mb-4 hero-anim uppercase tracking-wider">
+            Where industrial engineering, automation, data and AI converge.
+          </h2>
+
+          <p class="text-base md:text-lg text-white/70 max-w-lg mb-10 leading-relaxed hero-anim">
+            DHGsoft connects industrial operations with intelligent digital technologies — integrating automation, IIoT, AI, data, cloud and enterprise systems to create connected, intelligent and high-performing industrial enterprises.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto hero-anim">
+            <a href="#contact" class="group inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-brand-blue border border-brand-blue text-white px-8 py-3.5 text-sm md:text-base hover:bg-brand-electric hover:border-brand-electric shadow-lg shadow-brand-blue/20">
+              <span>Talk to an Expert <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></span>
+            </a>
+            <a href="#capabilities" class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-transparent border border-white/20 text-white px-8 py-3.5 text-sm md:text-base hover:bg-white/10 hover:border-white/40">
+              Explore Capabilities
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Animated SVG Wave Visualization -->
+        <div class="lg:col-span-5 relative w-full h-[380px] sm:h-[480px] lg:h-[600px] flex items-center justify-center hero-anim">
+          <div class="absolute inset-0 overflow-hidden">
+            
+            <canvas id="hero-wave-canvas" class="w-full h-full block"></canvas>
+            
+            <!-- Dynamic State Text Overlay -->
+            <div id="hero-wave-label" class="absolute top-10 left-10 flex items-center gap-2 text-white/95 opacity-0 transition-all duration-700 transform translate-y-2 pointer-events-none z-30">
+              <span class="inline-flex w-3.5 h-3.5 items-center justify-center text-brand-sky">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="font-display font-extrabold text-sm tracking-[0.2em] uppercase text-white/90" id="hero-wave-text">Proof of Principle</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll to explore indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-55 text-white text-xs tracking-widest uppercase pointer-events-none">
+        <span>Scroll to Explore</span>
+        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+      </div>
+
+    </section>
+
+    <!-- HERO STATS SECTION -->
+    <section class="py-12 bg-brand-darknavy border-y border-white/5 relative z-10">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          
+          <div class="flex flex-col text-left pt-4 border-t border-brand-blue/35 fade-up">
+            <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-bright mb-1">200+</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-white/50">Successful Projects</span>
+          </div>
+
+          <div class="flex flex-col text-left pt-4 border-t border-brand-blue/35 fade-up">
+            <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-bright mb-1">15+</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-white/50">Countries Deployed</span>
+          </div>
+
+          <div class="flex flex-col text-left pt-4 border-t border-brand-blue/35 fade-up">
+            <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-bright mb-1">10+ Years</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-white/50">Industry Expertise</span>
+          </div>
+
+          <div class="flex flex-col text-left pt-4 border-t border-brand-blue/35 fade-up">
+            <span class="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-bright mb-1">24×7</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-white/50">TECHNICAL SUPPORT</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES SECTION -->
+    <section id="industries" class="py-24 md:py-32 px-6 md:px-8 bg-brand-offwhite font-sans">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start text-left fade-up">
+          <div class="lg:col-span-5">
+            <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">TARGET INDUSTRIES</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight">
+              Transforming Industries Through Connected Intelligence
+            </h2>
+          </div>
+          <div class="lg:col-span-7 lg:pl-16 pt-4">
+            <p class="text-lg text-brand-gray leading-relaxed mb-6">
+              Every industry has unique operational challenges. DHGsoft combines deep industrial expertise with digital engineering, automation, and AI to optimize efficiency, validate compliance, and create measurable business value.
+            </p>
+          </div>
+        </div>
+
+        <!-- Asymmetric Card Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+          
+          <!-- LEFT Column: Large Featured Card (Life Sciences) -->
+          <div class="lg:col-span-7 group relative rounded-[2.5rem] overflow-hidden bg-brand-darknavy text-white min-h-[500px] flex flex-col justify-end p-8 md:p-12 shadow-xl border border-white/5 fade-up">
+            <div class="absolute inset-0 z-0">
+              <img 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
+                alt="Life Sciences validation" 
+                class="w-full h-full object-cover opacity-35 transition-transform duration-700 group-hover:scale-105" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent"></div>
+            </div>
+            <div class="relative z-10 text-left mt-auto">
+              <span class="text-[10px] font-black tracking-widest text-brand-sky uppercase bg-white/10 px-3.5 py-1 rounded-full mb-4 inline-block">Featured</span>
+              <h3 class="text-3xl md:text-4xl font-display font-extrabold tracking-tight mb-4">Life Sciences & Pharmaceuticals</h3>
+              <p class="text-white/70 max-w-lg mb-6 leading-relaxed">
+                Smart manufacturing suites for bio-pharma cells, combining logical execution systems, validation lines, and machine data analytics.
+              </p>
+              <ul class="flex flex-wrap gap-2 mb-8">
+                <li class="text-xs bg-white/10 border border-white/10 rounded-full px-3.5 py-1">GAMP 5</li>
+                <li class="text-xs bg-white/10 border border-white/10 rounded-full px-3.5 py-1">Batch Release</li>
+                <li class="text-xs bg-white/10 border border-white/10 rounded-full px-3.5 py-1">Electronic Records</li>
+              </ul>
+              <a href="#contact" class="inline-flex items-center justify-center font-bold text-sm text-brand-sky group-hover:text-white transition-colors">
+                Explore Industry <span class="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT Column: Two Smaller stacked cards -->
+          <div class="lg:col-span-5 flex flex-col gap-8">
+            
+            <!-- Card 2: Industrial Manufacturing -->
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-brand-navy text-white p-8 min-h-[236px] flex flex-col justify-end border border-white/5 shadow-lg fade-up">
+              <div class="absolute inset-0 z-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" 
+                  alt="Industrial manufacturing cell" 
+                  class="w-full h-full object-cover opacity-20 transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent"></div>
+              </div>
+              <div class="relative z-10 text-left">
+                <h3 class="text-2xl font-bold tracking-tight mb-2">Industrial Manufacturing</h3>
+                <p class="text-white/60 text-sm mb-4">IoT sensor grids, machine connectivity, and digital performance validation dashboards.</p>
+                <a href="#contact" class="inline-flex items-center justify-center font-bold text-xs text-brand-sky group-hover:text-white transition-colors">
+                  Explore Industry <span class="ml-1">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 3: Semiconductor -->
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-white text-brand-text p-8 min-h-[236px] flex flex-col justify-end border border-brand-border shadow-lg fade-up">
+              <div class="absolute inset-0 z-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1591745037745-f2e6e6a1728a?auto=format&fit=crop&w=800&q=80" 
+                  alt="Semiconductor clean room" 
+                  class="w-full h-full object-cover opacity-10 transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
+              </div>
+              <div class="relative z-10 text-left">
+                <h3 class="text-2xl font-bold tracking-tight text-brand-navy mb-2">Semiconductor</h3>
+                <p class="text-brand-gray text-sm mb-4">Precision logistics, factory execution systems, and analytics checking clean room throughput.</p>
+                <a href="#contact" class="inline-flex items-center justify-center font-bold text-xs text-brand-blue transition-colors">
+                  Explore Industry <span class="ml-1">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Additional Cards Below -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          
+          <div class="group bg-white border border-brand-border p-6 rounded-[2rem] flex flex-col justify-between text-left hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Automotive</h3>
+            <p class="text-xs text-brand-gray mb-6">Emulation digital twins, robotic cells, and line PLC programming.</p>
+            <a href="#contact" class="text-brand-blue font-bold text-xs">Explore Industry →</a>
+          </div>
+
+          <div class="group bg-white border border-brand-border p-6 rounded-[2rem] flex flex-col justify-between text-left hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Food & Beverage</h3>
+            <p class="text-xs text-brand-gray mb-6">Ingredient tracking, batch systems, and recipe scaling solutions.</p>
+            <a href="#contact" class="text-brand-blue font-bold text-xs">Explore Industry →</a>
+          </div>
+
+          <div class="group bg-white border border-brand-border p-6 rounded-[2rem] flex flex-col justify-between text-left hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Chemical</h3>
+            <p class="text-xs text-brand-gray mb-6">Continuous controls, validation loop tuning, and hazard integration safety.</p>
+            <a href="#contact" class="text-brand-blue font-bold text-xs">Explore Industry →</a>
+          </div>
+
+          <div class="group bg-white border border-brand-border p-6 rounded-[2rem] flex flex-col justify-between text-left hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <h3 class="text-lg font-bold text-brand-navy mb-2">EPC Services</h3>
+            <p class="text-xs text-brand-gray mb-6">Integrated multi-disciplinary plant design, layout modeling, and commissioning.</p>
+            <a href="#contact" class="text-brand-blue font-bold text-xs">Explore Industry →</a>
+          </div>
+
+          <div class="group bg-white border border-brand-border p-6 rounded-[2rem] flex flex-col justify-between text-left hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Smart Agriculture</h3>
+            <p class="text-xs text-brand-gray mb-6">Edge processing nodes, remote telemetry networks, and crop data platforms.</p>
+            <a href="#contact" class="text-brand-blue font-bold text-xs">Explore Industry →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CAPABILITIES SECTION -->
+    <section id="capabilities" class="py-24 md:py-32 px-6 md:px-8 bg-brand-bg font-sans">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col mb-16 text-left items-start fade-up">
+          <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">COMPREHENSIVE EXPERTISE</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight max-w-4xl">
+            Comprehensive Digital Engineering & Operational Solutions
+          </h2>
+          <p class="text-lg text-brand-gray max-w-2xl mt-4 leading-relaxed">
+            From plant floor instrumentation to cloud analytics, DHGsoft connects machine data, control logic, and enterprise applications into one unified digital ecosystem.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Cap Card 1 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">Industrial Automation & Process Control</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">PLC, DCS, and SCADA engineering, advanced process loop tuning, and machine automation.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">PLC/SCADA</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">DCS</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Loop Tuning</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+          <!-- Cap Card 2 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">Industrial IoT (IIoT) & Edge Computing</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">Smart sensors deployment, edge analytics engine configurations, and telemetry pipelines.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">MQTT/OPC UA</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Edge Processing</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Telemetry</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+          <!-- Cap Card 3 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l-7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">AI & Industrial Analytics</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">Predictive maintenance models, cycle latency intelligence, and smart visual detection.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">ML Models</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Computer Vision</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Anomalies</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+          <!-- Cap Card 4 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">OT & IT Infrastructure Integration</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">Securing and bridging data from control cabinets straight to ERP management software.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">ERP Bridges</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">OPC Bridges</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Secure OT</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+          <!-- Cap Card 5 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">OT Cybersecurity</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">IEC 62443 audit frameworks, firewall setups, and continuous anomaly scanning.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">IEC 62443</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">IDS</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Hardening</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+          <!-- Cap Card 6 -->
+          <div class="group bg-brand-offwhite border border-brand-border p-8 rounded-[2rem] text-left hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="w-12 h-12 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6 group-hover:bg-brand-blue group-hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-brand-navy mb-3">Cloud & Enterprise Systems</h3>
+            <p class="text-sm text-brand-gray mb-6 leading-relaxed">AWS/Azure cloud data lakes, MES orchestrations, and high-performance databases.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">MES Integration</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Azure Lakes</span>
+              <span class="text-[10px] bg-white border border-brand-border text-brand-gray px-2 py-0.5 rounded-full">Databases</span>
+            </div>
+            <a href="#contact" class="text-brand-blue font-bold text-xs group-hover:text-brand-electric transition-colors">Explore Capability →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURED CAPABILITY SECTION (SPLIT SCREEN) -->
+    <section class="relative bg-brand-navy font-sans overflow-hidden">
+      <!-- Ambient light effect -->
+      <div class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px] items-stretch">
+        
+        <!-- LEFT: Large Industrial Image -->
+        <div class="lg:col-span-6 relative min-h-[350px] lg:min-h-full">
+          <img 
+            src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80" 
+            alt="Advanced manufacturing machinery" 
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-brand-navy/20 mix-blend-multiply"></div>
+        </div>
+
+        <!-- RIGHT: Dark Navy Panel with Blue Gradient Lighting -->
+        <div class="lg:col-span-6 bg-brand-darknavy p-8 md:p-20 flex flex-col justify-center text-left relative overflow-hidden">
+          <!-- Geometric line accent -->
+          <div class="absolute top-0 right-0 w-[400px] h-[400px] border-r border-t border-brand-blue/5 rounded-tr-[5rem] pointer-events-none"></div>
+          
+          <div class="relative z-10 max-w-xl">
+            <span class="text-xs md:text-sm font-bold tracking-[0.25em] text-brand-sky uppercase mb-4 block">
+              INDUSTRIAL INTELLIGENCE
+            </span>
+            <h2 class="text-4xl md:text-5xl font-display font-extrabold text-white leading-[1.05] tracking-tight mb-8">
+              From Plant Floor <br />
+              to Enterprise Intelligence
+            </h2>
+            <p class="text-base md:text-lg text-white/70 leading-relaxed mb-10">
+              Connect machines, control systems, industrial telemetry grids, and cloud platforms to build secure, real-time operational intelligence.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mb-12">
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">Machine Connectivity</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">PLC / SCADA / DCS Integration</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">Industrial Data Platforms</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">AI & Advanced Analytics</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">Cloud Connectivity</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-bright font-bold">✓</span>
+                <span class="text-sm font-medium text-white/90">Operational Dashboards</span>
+              </div>
+            </div>
+
+            <a href="#contact" class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-brand-blue text-white px-8 py-3.5 text-sm md:text-base hover:bg-brand-electric shadow-lg shadow-brand-blue/20">
+              Explore Solutions
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DIGITAL TRANSFORMATION JOURNEY (TIMELINE) -->
+    <section class="py-24 md:py-32 px-6 md:px-8 bg-brand-bg font-sans">
+      <div class="max-w-7xl mx-auto text-left" x-data="{ selectedStep: 0 }">
+        
+        <div class="flex flex-col mb-16 items-start fade-up">
+          <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">OUR METHODOLOGY</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight">
+            From Strategy to Sustainable Business Outcomes
+          </h2>
+        </div>
+
+        <!-- Timeline Steps Container -->
+        <div class="relative">
+          
+          <!-- Desktop horizontal line connection -->
+          <div class="hidden lg:block absolute left-0 right-0 top-7 h-[2px] bg-brand-border -z-10"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-4 relative z-10">
+            
+            <!-- Step 1 -->
+            <button 
+              @click="selectedStep = 0"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 0 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                01
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 0 ? 'text-brand-blue' : 'text-brand-gray'">Strategy</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Understand operational goals</h3>
+              </div>
+            </button>
+
+            <!-- Step 2 -->
+            <button 
+              @click="selectedStep = 1"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 1 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                02
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 1 ? 'text-brand-blue' : 'text-brand-gray'">Design</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Model logical schematics</h3>
+              </div>
+            </button>
+
+            <!-- Step 3 -->
+            <button 
+              @click="selectedStep = 2"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 2 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                03
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 2 ? 'text-brand-blue' : 'text-brand-gray'">Build</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Fabricate system control</h3>
+              </div>
+            </button>
+
+            <!-- Step 4 -->
+            <button 
+              @click="selectedStep = 3"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 3 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                04
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 3 ? 'text-brand-blue' : 'text-brand-gray'">Deploy</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Commission site networks</h3>
+              </div>
+            </button>
+
+            <!-- Step 5 -->
+            <button 
+              @click="selectedStep = 4"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 4 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                05
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 4 ? 'text-brand-blue' : 'text-brand-gray'">Operate</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Validate live telemetry</h3>
+              </div>
+            </button>
+
+            <!-- Step 6 -->
+            <button 
+              @click="selectedStep = 5"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 5 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                06
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 5 ? 'text-brand-blue' : 'text-brand-gray'">Enable</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Train plant operators</h3>
+              </div>
+            </button>
+
+            <!-- Step 7 -->
+            <button 
+              @click="selectedStep = 6"
+              class="flex lg:flex-col items-start gap-4 lg:gap-6 text-left group focus:outline-none"
+            >
+              <div 
+                class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-md transition-all duration-300"
+                :class="selectedStep === 6 ? 'bg-brand-blue text-white' : 'bg-white text-brand-navy border-brand-border group-hover:border-brand-blue'"
+              >
+                07
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] font-black tracking-widest uppercase mb-1 block" :class="selectedStep === 6 ? 'text-brand-blue' : 'text-brand-gray'">Outcomes</span>
+                <h3 class="text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-blue">Ensure zero downtime</h3>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Dynamic Step Description Card -->
+          <div class="mt-12 p-8 bg-brand-offwhite border border-brand-border rounded-[2rem] text-left">
+            <template x-if="selectedStep === 0">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">01 Strategy: Industrial Consulting & Architecture Planning</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  We audit your manual workflows, define automation goals, specify security boundaries, and chart an industrial digital transformation architecture aligned with ISA-95 standards.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 1">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">02 Design: Logic Schematics & 3D Machine Mockups</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  Our digital engineers model complete electrical panels, logic control paths, instrumentation layout details, and network routing configurations prior to assembly.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 2">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">03 Build: Hardware Fabrication & Control Compilation</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  DHGsoft's custom team compiles PLC software, fabricates UL-compliant electrical panel units, integrates robotics kinematics, and builds telemetry servers.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 3">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">04 Deploy: Operational Site Commissioning</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  We verify sensors, tune loops, configure secure network gateways, and transition local machine controllers to production-ready loops.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 4">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">05 Operate: Real-time Telemetry & Performance Optimization</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  Continuous SCADA analysis, predictive telemetry processing, security scanning, and machine latency optimization.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 5">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">06 Enable: Workforce Enablement & Safety Drills</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  We conduct physical safety routine runs, document logic schematics, and train operators to ensure safe and efficient system operations.
+                </p>
+              </div>
+            </template>
+            <template x-if="selectedStep === 6">
+              <div>
+                <h4 class="text-xl font-bold text-brand-navy mb-2">07 Outcomes: Zero Downtime & Maximum Throughput</h4>
+                <p class="text-brand-gray text-base leading-relaxed">
+                  We deliver a completely connected, reliable, high-performance manufacturing facility that meets regulatory compliance guidelines.
+                </p>
+              </div>
+            </template>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY ECOSYSTEM (VISUAL NODE CHART) -->
+    <section class="py-24 md:py-32 px-6 md:px-8 bg-brand-navy bg-dot-grid relative overflow-hidden font-sans">
+      <div class="absolute inset-0 pointer-events-none opacity-30 select-none">
+        <div class="max-w-7xl mx-auto h-full border-x border-white/5 flex justify-between">
+          <div class="w-[1px] h-full bg-white/5 hidden md:block"></div>
+          <div class="w-[1px] h-full bg-white/5 hidden md:block"></div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        
+        <div class="flex flex-col mb-16 text-center items-center fade-up">
+          <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-bright mb-3 block">DATA-TO-INTELLIGENCE STACK</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white leading-[1.05] tracking-tight max-w-4xl">
+            Connecting the Industrial Technology Ecosystem
+          </h2>
+          <p class="text-lg text-white/60 max-w-2xl mt-4 leading-relaxed">
+            Data flows seamlessly across the ISA-95 stack — from machinery loops straight to enterprise intelligence nodes.
+          </p>
+        </div>
+
+        <!-- Node Ecosystem Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-8 gap-8 items-center text-center px-4 py-8 bg-brand-darknavy/40 border border-white/10 rounded-[3rem] shadow-2xl relative">
+          
+          <!-- Plant Floor -->
+          <div class="flex flex-col items-center p-4 rounded-2xl bg-brand-navy/60 border border-white/10">
+            <span class="text-xs font-bold text-brand-sky uppercase mb-2">01. Plant Floor</span>
+            <span class="font-bold text-white text-sm">Sensors & Robots</span>
+          </div>
+
+          <!-- Connection 1 -->
+          <div class="hidden lg:flex items-center justify-center">
+            <svg class="w-full h-8" viewBox="0 0 100 20">
+              <line x1="0" y1="10" x2="100" y2="10" stroke="#1677FF" stroke-width="2" stroke-dasharray="6 6" class="eco-pulse"/>
+            </svg>
+          </div>
+
+          <!-- Control Systems -->
+          <div class="flex flex-col items-center p-4 rounded-2xl bg-brand-navy/60 border border-white/10">
+            <span class="text-xs font-bold text-brand-sky uppercase mb-2">02. Control</span>
+            <span class="font-bold text-white text-sm">PLC / SCADA / DCS</span>
+          </div>
+
+          <!-- Connection 2 -->
+          <div class="hidden lg:flex items-center justify-center">
+            <svg class="w-full h-8" viewBox="0 0 100 20">
+              <line x1="0" y1="10" x2="100" y2="10" stroke="#1677FF" stroke-width="2" stroke-dasharray="6 6" class="eco-pulse"/>
+            </svg>
+          </div>
+
+          <!-- Edge/IIoT -->
+          <div class="flex flex-col items-center p-4 rounded-2xl bg-brand-navy/60 border border-white/10">
+            <span class="text-xs font-bold text-brand-sky uppercase mb-2">03. Edge/IIoT</span>
+            <span class="font-bold text-white text-sm">OPC UA & Gateway</span>
+          </div>
+
+          <!-- Connection 3 -->
+          <div class="hidden lg:flex items-center justify-center">
+            <svg class="w-full h-8" viewBox="0 0 100 20">
+              <line x1="0" y1="10" x2="100" y2="10" stroke="#1677FF" stroke-width="2" stroke-dasharray="6 6" class="eco-pulse"/>
+            </svg>
+          </div>
+
+          <!-- Enterprise Cloud -->
+          <div class="flex flex-col items-center p-4 rounded-2xl bg-brand-navy/60 border border-white/10">
+            <span class="text-xs font-bold text-brand-sky uppercase mb-2">04. Enterprise</span>
+            <span class="font-bold text-white text-sm">AI, MES & Cloud</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INDUSTRIAL TECHNOLOGY / PRODUCTS -->
+    <section id="products" class="py-24 md:py-32 px-6 md:px-8 bg-brand-offwhite font-sans">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col mb-16 text-left items-start fade-up">
+          <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">HARDWARE & SOFTWARE PROVISIONING</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight">
+            Trusted Industrial Technology. Global Partners. Reliable Solutions.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Product Card 1 -->
+          <div class="group bg-white border border-brand-border rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1597491829127-9a95bc9f63c5?auto=format&fit=crop&w=600&q=80" alt="Industrial networks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute inset-0 bg-brand-navy/10"></div>
+            </div>
+            <div class="p-8 text-left">
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Industrial Automation Systems</h3>
+              <p class="text-sm text-brand-gray mb-6">PLCs, HMIs, and distributed control systems (DCS) for continuous and discrete manufacturing plants.</p>
+              <a href="#contact" class="inline-flex items-center text-brand-blue font-bold text-xs">Request Info →</a>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="group bg-white border border-brand-border rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Networking devices" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute inset-0 bg-brand-navy/10"></div>
+            </div>
+            <div class="p-8 text-left">
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Industrial Networking & Connectivity</h3>
+              <p class="text-sm text-brand-gray mb-6">Managed ethernet switches, robust fiber backbones, and secure industrial wireless routing hardware.</p>
+              <a href="#contact" class="inline-flex items-center text-brand-blue font-bold text-xs">Request Info →</a>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="group bg-white border border-brand-border rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-up">
+            <div class="h-48 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80" alt="Edge systems" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute inset-0 bg-brand-navy/10"></div>
+            </div>
+            <div class="p-8 text-left">
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Industrial Computing & Edge Platforms</h3>
+              <p class="text-sm text-brand-gray mb-6">High-performance fanless computers, ruggedized tablets, and analytics nodes for raw telemetry collection.</p>
+              <a href="#contact" class="inline-flex items-center text-brand-blue font-bold text-xs">Request Info →</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY DHGSOFT (DIFFERENTIATORS) -->
+    <section id="differentiators" class="py-24 md:py-32 px-6 md:px-8 bg-brand-bg font-sans">
+      <div class="max-w-7xl mx-auto">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 items-start text-left fade-up">
+          <div class="lg:col-span-5">
+            <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">WHY DHGSOFT</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight">
+              Engineering Excellence. Measurable Business Outcomes.
+            </h2>
+          </div>
+          <div class="lg:col-span-7 lg:pl-16 pt-4">
+            <p class="text-lg text-brand-gray leading-relaxed">
+              DHGsoft combines deep industrial engineering expertise with advanced digital technologies to help organizations modernize operations, improve reliability and accelerate business performance.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Differentiator 1 -->
+          <div class="p-8 rounded-[2rem] bg-brand-offwhite border border-brand-border text-left hover:shadow-lg transition-all duration-300 fade-up">
+            <div class="w-10 h-10 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Industrial Domain Expertise</h3>
+            <p class="text-sm text-brand-gray leading-relaxed">Our engineers hold deep domain insights in pharmaceuticals, semiconductor setups, and manufacturing systems.</p>
+          </div>
+
+          <!-- Differentiator 2 -->
+          <div class="p-8 rounded-[2rem] bg-brand-offwhite border border-brand-border text-left hover:shadow-lg transition-all duration-300 fade-up">
+            <div class="w-10 h-10 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l-7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">End-to-End Solutions</h3>
+            <p class="text-sm text-brand-gray leading-relaxed">We orchestrate control cabinets, implement SCADA systems, build databases, and deliver cloud dashboards.</p>
+          </div>
+
+          <!-- Differentiator 3 -->
+          <div class="p-8 rounded-[2rem] bg-brand-offwhite border border-brand-border text-left hover:shadow-lg transition-all duration-300 fade-up">
+            <div class="w-10 h-10 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 .364l-.707.707M21 12h-1M4 12H3m3.364-7.636l-.707-.707M12 17v4m-5-4h10a5 5 0 0 0-10 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Digital Innovation</h3>
+            <p class="text-sm text-brand-gray leading-relaxed">Applying machine learning classifiers and edge compute algorithms to analyze cycle latencies in real time.</p>
+          </div>
+
+          <!-- Differentiator 4 -->
+          <div class="p-8 rounded-[2rem] bg-brand-offwhite border border-brand-border text-left hover:shadow-lg transition-all duration-300 fade-up">
+            <div class="w-10 h-10 rounded-xl bg-brand-lightblue flex items-center justify-center text-brand-blue mb-6">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">IEC 62443 Certified</h3>
+            <p class="text-sm text-brand-gray leading-relaxed">We design and audit our network architectures to comply with absolute OT cybersecurity frameworks.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INNOVATION INSTITUTE SECTION -->
+    <section class="py-24 md:py-32 px-6 md:px-8 bg-brand-navy bg-dot-grid relative overflow-hidden font-sans">
+      <div class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        
+        <div class="flex flex-col mb-16 text-left items-start fade-up">
+          <span class="text-xs md:text-sm font-bold tracking-[0.25em] text-brand-sky uppercase mb-4 block">DHGSOFT INNOVATION INSTITUTE</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white leading-[1.05] tracking-tight max-w-4xl">
+            Advancing Industrial Innovation Through Research, Engineering & Intelligence
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          
+          <!-- Research Card 1 -->
+          <div class="group bg-brand-darknavy/60 border border-white/10 p-8 rounded-[2rem] text-left hover:border-brand-blue/40 hover:shadow-xl transition-all duration-300">
+            <h4 class="text-xs font-bold text-brand-sky uppercase mb-3">AI / ML Research</h4>
+            <h3 class="text-lg font-bold text-white mb-4">Autonomous Process Loop Optimizers</h3>
+            <p class="text-xs text-white/60 leading-relaxed mb-6">Evaluating neural reinforcement algorithms deployed directly on local edge gateway units.</p>
+            <a href="#contact" class="text-brand-bright font-bold text-xs group-hover:text-white transition-colors">Read Paper →</a>
+          </div>
+
+          <!-- Research Card 2 -->
+          <div class="group bg-brand-darknavy/60 border border-white/10 p-8 rounded-[2rem] text-left hover:border-brand-blue/40 hover:shadow-xl transition-all duration-300">
+            <h4 class="text-xs font-bold text-brand-sky uppercase mb-3">Digital Twins</h4>
+            <h3 class="text-lg font-bold text-white mb-4">Emulation Systems & Kinematics</h3>
+            <p class="text-xs text-white/60 leading-relaxed mb-6">Building physics-accurate structural digital twin frameworks to validate complex tooling cycles.</p>
+            <a href="#contact" class="text-brand-bright font-bold text-xs group-hover:text-white transition-colors">Read Paper →</a>
+          </div>
+
+          <!-- Research Card 3 -->
+          <div class="group bg-brand-darknavy/60 border border-white/10 p-8 rounded-[2rem] text-left hover:border-brand-blue/40 hover:shadow-xl transition-all duration-300">
+            <h4 class="text-xs font-bold text-brand-sky uppercase mb-3">Edge AI</h4>
+            <h3 class="text-lg font-bold text-white mb-4">Anomalies & Predictive Maintenance</h3>
+            <p class="text-xs text-white/60 leading-relaxed mb-6">Deploying fast anomaly check architectures straight to sensors to predict component wear-out.</p>
+            <a href="#contact" class="text-brand-bright font-bold text-xs group-hover:text-white transition-colors">Read Paper →</a>
+          </div>
+
+          <!-- Research Card 4 -->
+          <div class="group bg-brand-darknavy/60 border border-white/10 p-8 rounded-[2rem] text-left hover:border-brand-blue/40 hover:shadow-xl transition-all duration-300">
+            <h4 class="text-xs font-bold text-brand-sky uppercase mb-3">OT Cybersecurity</h4>
+            <h3 class="text-lg font-bold text-white mb-4">IDS Intrusion Pattern Analysis</h3>
+            <p class="text-xs text-white/60 leading-relaxed mb-6">Implementing hardware detection modules to scanning industrial network telemetry anomalies.</p>
+            <a href="#contact" class="text-brand-bright font-bold text-xs group-hover:text-white transition-colors">Read Paper →</a>
+          </div>
+
+        </div>
+
+        <div class="text-left">
+          <a href="#contact" class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-brand-blue text-white px-8 py-3.5 text-sm md:text-base hover:bg-brand-electric shadow-lg shadow-brand-blue/20">
+            Explore Innovation
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INSIGHTS / NEWS SECTION -->
+    <section id="insights" class="py-24 md:py-32 px-6 md:px-8 bg-brand-offwhite font-sans overflow-hidden">
+      <div class="max-w-7xl mx-auto" x-data="{ currentIdx: 0 }">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 text-left fade-up">
+          <div>
+            <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">PERSPECTIVES & NEWS</span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight">
+              Engineering Insights That Drive Industrial Transformation
+            </h2>
+          </div>
+          
+          <!-- Carousel Navigation Controls -->
+          <div class="flex gap-3 mt-8 md:mt-0">
+            <button 
+              @click="currentIdx = Math.max(0, currentIdx - 1)" 
+              class="w-12 h-12 rounded-full border border-brand-border bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white transition-all shadow-md focus:outline-none"
+              :disabled="currentIdx === 0"
+              :class="currentIdx === 0 ? 'opacity-40 pointer-events-none' : ''"
+            >
+              ←
+            </button>
+            <button 
+              @click="currentIdx = Math.min(2, currentIdx + 1)" 
+              class="w-12 h-12 rounded-full border border-brand-border bg-white flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white transition-all shadow-md focus:outline-none"
+              :disabled="currentIdx === 2"
+              :class="currentIdx === 2 ? 'opacity-40 pointer-events-none' : ''"
+            >
+              →
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Slides Container -->
+        <div class="relative w-full">
+          <div 
+            class="flex gap-8 transition-transform duration-500 ease-out" 
+            :style="'transform: translateX(-' + (currentIdx * 34) + '%)'"
+            style="width: 150%;"
+          >
+            
+            <!-- Slide 1 -->
+            <div class="w-[30%] bg-white border border-brand-border rounded-[2.5rem] overflow-hidden p-6 text-left flex flex-col justify-between min-h-[420px] shadow-sm hover:shadow-lg transition-all duration-300">
+              <div>
+                <span class="text-[10px] font-black tracking-widest text-brand-blue uppercase mb-4 block">Case Study</span>
+                <h3 class="text-xl font-bold text-brand-navy mb-4">Building the Connected Industrial Enterprise</h3>
+                <p class="text-brand-gray text-sm mb-6">How integrating machine metrics straight into cloud databases boosted factory cycle output by 28%.</p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-xs text-brand-gray block mb-4">August 28, 2026</span>
+                <a href="#contact" class="text-brand-blue font-bold text-xs">Read Article →</a>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="w-[30%] bg-white border border-brand-border rounded-[2.5rem] overflow-hidden p-6 text-left flex flex-col justify-between min-h-[420px] shadow-sm hover:shadow-lg transition-all duration-300">
+              <div>
+                <span class="text-[10px] font-black tracking-widest text-brand-blue uppercase mb-4 block">Research</span>
+                <h3 class="text-xl font-bold text-brand-navy mb-4">Industrial AI & Predictive Maintenance</h3>
+                <p class="text-brand-gray text-sm mb-6">Evaluating anomalous vibration classification models running locally on plant floor hardware devices.</p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-xs text-brand-gray block mb-4">July 15, 2026</span>
+                <a href="#contact" class="text-brand-blue font-bold text-xs">Read Paper →</a>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="w-[30%] bg-white border border-brand-border rounded-[2.5rem] overflow-hidden p-6 text-left flex flex-col justify-between min-h-[420px] shadow-sm hover:shadow-lg transition-all duration-300">
+              <div>
+                <span class="text-[10px] font-black tracking-widest text-brand-blue uppercase mb-4 block">OT Security</span>
+                <h3 class="text-xl font-bold text-brand-navy mb-4">IEC 62443 Firewall Integration Protocols</h3>
+                <p class="text-brand-gray text-sm mb-6">A breakdown of DMZ layout steps to shield logic controllers from cloud-facing endpoints.</p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-xs text-brand-gray block mb-4">June 04, 2026</span>
+                <a href="#contact" class="text-brand-blue font-bold text-xs">Read Guide →</a>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="w-[30%] bg-white border border-brand-border rounded-[2.5rem] overflow-hidden p-6 text-left flex flex-col justify-between min-h-[420px] shadow-sm hover:shadow-lg transition-all duration-300">
+              <div>
+                <span class="text-[10px] font-black tracking-widest text-brand-blue uppercase mb-4 block">Industry 4.0</span>
+                <h3 class="text-xl font-bold text-brand-navy mb-4">Smart Manufacturing Execution Systems</h3>
+                <p class="text-brand-gray text-sm mb-6">Optimizing complex batch runs using containerized scheduler programs.</p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-xs text-brand-gray block mb-4">May 19, 2026</span>
+                <a href="#contact" class="text-brand-blue font-bold text-xs">Read Article →</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LARGE EDITORIAL BRAND STATEMENT -->
+    <section class="py-32 bg-brand-bg bg-dot-grid-light relative border-y border-brand-border">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        
+        <h2 class="text-4xl md:text-6xl lg:text-[4.5rem] font-display font-light leading-[1.1] tracking-tight text-brand-navy mb-12 max-w-4xl mx-auto">
+          Industrial transformation isn't <br />
+          about individual technologies. <br />
+          <span class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-bright">
+            It's about connecting them.
+          </span>
+        </h2>
+
+        <!-- Convergence tags -->
+        <div class="flex flex-wrap items-center justify-center gap-4 text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy">
+          <span class="px-5 py-2.5 rounded-full bg-brand-lightblue text-brand-blue shadow-sm">Automation.</span>
+          <span class="px-5 py-2.5 rounded-full bg-brand-lightblue text-brand-blue shadow-sm">Data.</span>
+          <span class="px-5 py-2.5 rounded-full bg-brand-lightblue text-brand-blue shadow-sm">AI.</span>
+          <span class="px-5 py-2.5 rounded-full bg-brand-lightblue text-brand-blue shadow-sm">Cloud.</span>
+          <span class="px-5 py-2.5 rounded-full bg-brand-lightblue text-brand-blue shadow-sm">Engineering.</span>
+        </div>
+
+        <div class="mt-12 text-sm font-bold tracking-widest text-brand-gray uppercase">
+          One intelligent ecosystem.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FINAL CTA SECTION (SPLIT LAYOUT) -->
+    <section class="py-24 md:py-36 px-6 md:px-8 bg-brand-navy font-sans overflow-hidden relative">
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-navy to-brand-blue/30 opacity-80 z-0"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy & Actions -->
+        <div class="lg:col-span-7 text-left flex flex-col items-start">
+          <h2 class="text-4xl md:text-7xl font-display font-extrabold text-white leading-[0.95] tracking-tighter mb-8">
+            Ready to Connect <br />
+            Intelligence?
+          </h2>
+          <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-12 max-w-xl">
+            Transform data into decisions. Connect operations with enterprise intelligence. Accelerate your digital transformation journey with DHGsoft.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a 
+              href="#contact" 
+              class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-white text-brand-navy border border-white px-8 py-3.5 text-sm md:text-base hover:bg-transparent hover:text-white"
+            >
+              Start a Conversation
+            </a>
+            <a 
+              href="#capabilities" 
+              class="inline-flex items-center justify-center font-semibold tracking-tight transition-all duration-300 rounded-full bg-transparent border border-white/20 text-white px-8 py-3.5 text-sm md:text-base hover:bg-white/10 hover:border-white/40"
+            >
+              Explore Capabilities
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Industrial Technology Mockup -->
+        <div class="lg:col-span-5 relative h-[300px] sm:h-[400px] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" 
+            alt="DHGsoft industrial dashboard" 
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-brand-navy/30 mix-blend-multiply"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT / REQUEST SECTION -->
+    <section id="contact" class="py-24 md:py-32 px-6 md:px-8 bg-brand-offwhite font-sans relative z-10 border-t border-brand-border">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left: Contact info -->
+        <div class="lg:col-span-5 text-left">
+          <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-brand-blue mb-3 block">COLLABORATE WITH US</span>
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-brand-text leading-[1.05] tracking-tight mb-8">
+            Let's Build What's Next.
+          </h2>
+          <p class="text-lg text-brand-gray leading-relaxed mb-12">
+            Tell us about your automation or digital transformation goals. Our engineering teams will help you outline a secure, scalable solution path.
+          </p>
+
+          <div class="space-y-6 text-sm font-semibold text-brand-navy">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-brand-lightblue flex items-center justify-center text-brand-blue font-bold">@</span>
+              <span class="text-brand-gray">integration@dhgsoft.com</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-brand-lightblue flex items-center justify-center text-brand-blue font-bold">t</span>
+              <span class="text-brand-gray">+1 (800) 555-DHGSOFT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Modern Request Form -->
+        <div class="lg:col-span-7 bg-white border border-brand-border rounded-[3rem] p-8 md:p-12 shadow-xl">
+          <form class="space-y-6" @submit.prevent="alert('Thank you! Your request has been submitted. An integration engineer will follow up within 24 hours.')">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">First Name</label>
+                <input type="text" required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Last Name</label>
+                <input type="text" required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Company</label>
+                <input type="text" required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Job Title</label>
+                <input type="text" required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Email Address</label>
+                <input type="email" required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+              <div class="text-left">
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Phone</label>
+                <input type="tel" class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white" />
+              </div>
+            </div>
+
+            <div class="text-left">
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Industry</label>
+              <select required class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white">
+                <option value="">Select your industry</option>
+                <option>Life Sciences & Pharmaceuticals</option>
+                <option>Industrial Manufacturing</option>
+                <option>Automotive Assembly</option>
+                <option>Semiconductor Fabrication</option>
+                <option>Food & Beverages</option>
+                <option>Chemical Process Control</option>
+                <option>EPC Plant Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="text-left">
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">How can we help?</label>
+              <textarea required rows="4" class="w-full px-4 py-3 bg-brand-offwhite border border-brand-border rounded-xl text-sm focus:outline-none focus:border-brand-blue focus:bg-white"></textarea>
+            </div>
+
+            <div class="flex items-start gap-3 text-left">
+              <input type="checkbox" required class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue" id="consent" />
+              <label for="consent" class="text-xs text-brand-gray leading-relaxed">
+                I agree to DHGsoft collecting and processing my personal data in accordance with the Privacy Policy.
+              </label>
+            </div>
+
+            <button type="submit" class="w-full font-semibold tracking-tight transition-all duration-300 rounded-xl bg-brand-blue border border-brand-blue text-white py-4 hover:bg-brand-electric shadow-lg shadow-brand-blue/20">
+              Submit Request
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-brand-border font-sans pt-20 relative overflow-hidden">
+      <!-- Gradient ribbon line -->
+      <div class="absolute top-0 left-0 right-0 h-1.5 flex">
+        <div class="flex-1 bg-brand-navy"></div>
+        <div class="flex-1 bg-brand-blue"></div>
+        <div class="flex-1 bg-brand-electric"></div>
+        <div class="flex-1 bg-brand-bright"></div>
+        <div class="flex-1 bg-brand-sky"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 md:px-8 pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+          
+          <div class="lg:col-span-4 flex flex-col items-start text-left">
+            <a href="#" class="flex items-center gap-2 mb-6 group">
+              <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-bright flex items-center justify-center font-bold text-white text-lg tracking-tighter">D</span>
+              <span class="font-display font-extrabold text-xl tracking-tight text-brand-navy">
+                DHG<span class="font-light text-brand-blue">soft</span>
+              </span>
+            </a>
+            <p class="text-sm text-brand-gray mb-8 max-w-sm">
+              Connecting industrial automation, IIoT, AI, and digital engineering to transform operations into connected, high-performing enterprises.
+            </p>
+            <div class="flex gap-4">
+              <!-- Social Icons -->
+              <a href="#" class="w-9 h-9 rounded-full bg-brand-offwhite border border-brand-border flex items-center justify-center text-brand-gray hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all" aria-label="LinkedIn">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="#" class="w-9 h-9 rounded-full bg-brand-offwhite border border-brand-border flex items-center justify-center text-brand-gray hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all" aria-label="Twitter">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 flex flex-col items-start text-left md:pl-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-6">Industries</h4>
+            <ul class="space-y-3.5 text-sm font-semibold text-brand-gray">
+              <li><a href="#industries" class="hover:text-brand-blue">Manufacturing</a></li>
+              <li><a href="#industries" class="hover:text-brand-blue">Life Sciences</a></li>
+              <li><a href="#industries" class="hover:text-brand-blue">Automotive</a></li>
+              <li><a href="#industries" class="hover:text-brand-blue">Semiconductor</a></li>
+              <li><a href="#industries" class="hover:text-brand-blue">Food & Beverage</a></li>
+              <li><a href="#industries" class="hover:text-brand-blue">Chemical</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 flex flex-col items-start text-left md:pl-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-6">Capabilities</h4>
+            <ul class="space-y-3.5 text-sm font-semibold text-brand-gray">
+              <li><a href="#capabilities" class="hover:text-brand-blue">Automation</a></li>
+              <li><a href="#capabilities" class="hover:text-brand-blue">IIoT & Edge</a></li>
+              <li><a href="#capabilities" class="hover:text-brand-blue">AI & Analytics</a></li>
+              <li><a href="#capabilities" class="hover:text-brand-blue">OT & IT Infrastructure</a></li>
+              <li><a href="#capabilities" class="hover:text-brand-blue">OT Cybersecurity</a></li>
+              <li><a href="#capabilities" class="hover:text-brand-blue">Cloud Systems</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 flex flex-col items-start text-left">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-6">Company</h4>
+            <ul class="space-y-3.5 text-sm font-semibold text-brand-gray">
+              <li><a href="#contact" class="hover:text-brand-blue">About DHGsoft</a></li>
+              <li><a href="#contact" class="hover:text-brand-blue">Innovation</a></li>
+              <li><a href="#contact" class="hover:text-brand-blue">Careers</a></li>
+              <li><a href="#insights" class="hover:text-brand-blue">Insights</a></li>
+              <li><a href="#contact" class="hover:text-brand-blue">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 flex flex-col items-start text-left">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-6">Resources</h4>
+            <ul class="space-y-3.5 text-sm font-semibold text-brand-gray">
+              <li><a href="#insights" class="hover:text-brand-blue">Case Studies</a></li>
+              <li><a href="#insights" class="hover:text-brand-blue">Whitepapers</a></li>
+              <li><a href="#insights" class="hover:text-brand-blue">Research</a></li>
+              <li><a href="#products" class="hover:text-brand-blue">Technology</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-brand-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold text-brand-gray">
+          <div>© 2026 DHGsoft. All rights reserved.</div>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-brand-blue">Privacy Policy</a>
+            <a href="#" class="hover:text-brand-blue">Terms of Use</a>
+            <a href="#" class="hover:text-brand-blue">Cookie Policy</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Gsap / ScrollTrigger Animation Configurations -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize GSAP visibility hide so the HTML elements stay visible if GSAP script is delayed or blocked
+        gsap.set('.fade-up', { opacity: 0, y: 35 });
+
+        // 1. Scroll Progress Bar
+        gsap.to('#scroll-progress', {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+          }
+        });
+
+        // 2. Fade Up animations for headings and cards
+        gsap.utils.toArray('.fade-up').forEach((el) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+
+        // 3. Hero Animations on Page Load
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+        heroTl.fromTo('.hero-anim', 
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, stagger: 0.15 }
+        );
+
+        // 4. Convergix-style Wave Canvas Animation
+        const canvas = document.getElementById('hero-wave-canvas');
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+          const labelEl = document.getElementById('hero-wave-label');
+          const textEl = document.getElementById('hero-wave-text');
+          
+          let logicalWidth = canvas.clientWidth;
+          let logicalHeight = canvas.clientHeight;
+
+          // Animation States matching Convergix UI
+          const stateData = [
+            { text: 'Proof of Principle', isWavy: false },
+            { text: 'Digital Transformation', isWavy: true },
+            { text: 'Connected Ecosystem', isWavy: false },
+            { text: 'Scaling Intelligence', isWavy: true }
+          ];
+
+          let currentStateIdx = 0;
+          let stateTimer = 0;
+          
+          // Wave components with blue-navy colors and explicit sweep properties
+          const waveLines = [
+            {
+              amp: 0,
+              targetAmp: 0,
+              prevAmp: 0,
+              baseWavyAmp: 40,
+              baseWavyAmpAlt: -38,
+              freq: 0.015,
+              phase: 0,
+              color: '#0866FF',
+              glowColor: 'rgba(8, 102, 255, 0.22)',
+              width: 3.5,
+              speed: 0.08
+            },
+            {
+              amp: 0,
+              targetAmp: 0,
+              prevAmp: 0,
+              baseWavyAmp: -32,
+              baseWavyAmpAlt: 30,
+              freq: 0.022,
+              phase: 2.2,
+              color: '#1677FF',
+              glowColor: 'rgba(22, 119, 255, 0.28)',
+              width: 2.5,
+              speed: -0.06
+            },
+            {
+              amp: 0,
+              targetAmp: 0,
+              prevAmp: 0,
+              baseWavyAmp: 22,
+              baseWavyAmpAlt: -20,
+              freq: 0.012,
+              phase: 4.4,
+              color: '#FFFFFF',
+              glowColor: 'rgba(93, 183, 255, 0.35)',
+              width: 1.5,
+              speed: 0.04
+            }
+          ];
+
+          function updateState() {
+            const state = stateData[currentStateIdx];
+            
+            // Fade out label, switch text, fade in
+            if (labelEl) {
+              labelEl.classList.remove('opacity-90', 'translate-y-0');
+              labelEl.classList.add('opacity-0', 'translate-y-2');
+              
+              setTimeout(() => {
+                if (textEl) textEl.textContent = state.text;
+                labelEl.classList.remove('opacity-0', 'translate-y-2');
+                labelEl.classList.add('opacity-90', 'translate-y-0');
+              }, 400);
+            }
+
+            // Save current amplitudes as previous to transition smoothly
+            waveLines.forEach(wl => {
+              wl.prevAmp = wl.amp;
+              
+              if (state.isWavy) {
+                wl.targetAmp = currentStateIdx === 1 ? wl.baseWavyAmp : wl.baseWavyAmpAlt;
+              } else {
+                wl.targetAmp = 0;
+              }
+            });
+          }
+
+          let initialDelay = 180; // 3 seconds at 60fps
+
+          let t = 0;
+
+          // 3D Perspective Tunnel arrays & parameters
+          const laserBars = [];
+          const binaryCodes = [];
+          const chars = ['0', '1', 'X', 'Y', '◆'];
+          
+          for (let i = 0; i < 8; i++) {
+            laserBars.push({
+              angleIndex: Math.floor(Math.random() * 8),
+              z: Math.random(),
+              length: 0.12 + Math.random() * 0.1,
+              speed: 0.004 + Math.random() * 0.003,
+              color: Math.random() > 0.4 ? '#0866FF' : '#1677FF',
+              glowColor: Math.random() > 0.4 ? 'rgba(8, 102, 255, 0.25)' : 'rgba(22, 119, 255, 0.25)'
+            });
+          }
+
+          for (let i = 0; i < 15; i++) {
+            binaryCodes.push({
+              angleIndex: Math.floor(Math.random() * 12),
+              z: Math.random(),
+              char: chars[Math.floor(Math.random() * chars.length)],
+              speed: 0.002 + Math.random() * 0.002,
+              radiusOffset: 35 + Math.random() * 55
+            });
+          }
+
+          // Realistic Volumetric Radial Flare drawing function
+          function drawGlowDot(x, y, size, glowColor) {
+            // 1. Soft Outer Ambient Bloom Halo
+            const outerGlow = ctx.createRadialGradient(x, y, size * 0.1, x, y, size * 3.5);
+            outerGlow.addColorStop(0, glowColor.replace('0.22', '0.6').replace('0.28', '0.6').replace('0.35', '0.7'));
+            outerGlow.addColorStop(0.3, glowColor.replace('0.22', '0.25').replace('0.28', '0.25').replace('0.35', '0.3'));
+            outerGlow.addColorStop(1, 'rgba(8, 102, 255, 0)');
+            ctx.beginPath();
+            ctx.arc(x, y, size * 3.5, 0, Math.PI * 2);
+            ctx.fillStyle = outerGlow;
+            ctx.fill();
+
+            // 2. High-intensity center white core
+            const coreGlow = ctx.createRadialGradient(x, y, 0, x, y, size);
+            coreGlow.addColorStop(0, '#FFFFFF');
+            coreGlow.addColorStop(0.3, '#FFFFFF');
+            coreGlow.addColorStop(0.7, 'rgba(235, 245, 255, 0.95)');
+            coreGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fillStyle = coreGlow;
+            ctx.fill();
+          }
+
+          function animate() {
+            requestAnimationFrame(animate);
+
+            // Gold-standard dynamic resize matching client bounds to prevent default size locks
+            const dpr = window.devicePixelRatio || 1;
+            const displayWidth = canvas.clientWidth;
+            const displayHeight = canvas.clientHeight;
+            
+            if (canvas.width !== Math.floor(displayWidth * dpr) || canvas.height !== Math.floor(displayHeight * dpr)) {
+              canvas.width = Math.floor(displayWidth * dpr);
+              canvas.height = Math.floor(displayHeight * dpr);
+              ctx.scale(dpr, dpr);
+              logicalWidth = displayWidth;
+              logicalHeight = displayHeight;
+            }
+
+            ctx.clearRect(0, 0, logicalWidth, logicalHeight);
+            
+            if (logicalWidth === 0 || logicalHeight === 0) return;
+
+            const cx = logicalWidth * 0.45;
+            const centerY = logicalHeight / 2;
+            const cy = centerY;
+            t += 0.02;
+
+            // DRAW 3D PERSPECTIVE GRID LINES AND CONCENTRIC RECTANGLES
+            let ringProgress = (t * 0.4) % 1.0;
+            ctx.lineWidth = 1;
+            
+            for (let d = 0; d < 6; d++) {
+              let scale = Math.pow(2.1, d + ringProgress) / Math.pow(2.1, 6.5);
+              let w = logicalWidth * scale;
+              let h = logicalHeight * scale;
+              let alpha = scale < 0.2 ? (scale / 0.2) * 0.08 : (1.0 - scale) * 0.08;
+              ctx.strokeStyle = 'rgba(8, 102, 255, ' + alpha + ')';
+              ctx.strokeRect(cx - w/2, cy - h/2, w, h);
+            }
+
+            // Draw radiating grid wireframe diagonals
+            let outerW = logicalWidth * (Math.pow(2.1, 5) / Math.pow(2.1, 6.5));
+            let outerH = logicalHeight * (Math.pow(2.1, 5) / Math.pow(2.1, 6.5));
+            ctx.strokeStyle = 'rgba(8, 102, 255, 0.04)';
+            ctx.beginPath();
+            ctx.moveTo(cx, cy); ctx.lineTo(cx - outerW/2, cy - outerH/2);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx + outerW/2, cy - outerH/2);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx - outerW/2, cy + outerH/2);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx + outerW/2, cy + outerH/2);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx - outerW/2, cy);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx + outerW/2, cy);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx, cy - outerH/2);
+            ctx.moveTo(cx, cy); ctx.lineTo(cx, cy + outerH/2);
+            ctx.stroke();
+
+            // DRAW 3D FLOWING LASER BARS
+            laserBars.forEach(bar => {
+              bar.z += bar.speed;
+              if (bar.z > 1.0) {
+                bar.z = 0;
+                bar.angleIndex = Math.floor(Math.random() * 8);
+              }
+              
+              let angle = (bar.angleIndex / 8) * Math.PI * 2;
+              let cos = Math.cos(angle);
+              let sin = Math.sin(angle);
+              
+              let scaleStart = Math.pow(2.1, bar.z * 6.5) / Math.pow(2.1, 6.5);
+              let scaleEnd = Math.pow(2.1, Math.max(0, bar.z - bar.length) * 6.5) / Math.pow(2.1, 6.5);
+              
+              let maxDist = Math.sqrt(logicalWidth * logicalWidth + logicalHeight * logicalHeight) / 2;
+              let rStart = maxDist * scaleStart;
+              let rEnd = maxDist * scaleEnd;
+              
+              let x1 = cx + cos * rStart;
+              let y1 = cy + sin * rStart;
+              let x2 = cx + cos * rEnd;
+              let y2 = cy + sin * rEnd;
+              
+              let alpha = bar.z < 0.25 ? (bar.z / 0.25) : (1.0 - bar.z);
+              
+              ctx.beginPath();
+              ctx.lineWidth = 3.5;
+              ctx.strokeStyle = bar.glowColor.replace('0.25', (alpha * 0.4).toString());
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+              
+              ctx.beginPath();
+              ctx.lineWidth = 1.2;
+              ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+            });
+
+            // DRAW 3D BINARY CODES
+            binaryCodes.forEach(code => {
+              code.z += code.speed;
+              if (code.z > 1.0) {
+                code.z = 0;
+                code.char = chars[Math.floor(Math.random() * chars.length)],
+                code.angleIndex = Math.floor(Math.random() * 12);
+              }
+              
+              let angle = (code.angleIndex / 12) * Math.PI * 2;
+              let cos = Math.cos(angle);
+              let sin = Math.sin(angle);
+              
+              let scale = Math.pow(2.1, code.z * 6.5) / Math.pow(2.1, 6.5);
+              let maxDist = Math.sqrt(logicalWidth * logicalWidth + logicalHeight * logicalHeight) / 2;
+              let r = code.radiusOffset + maxDist * scale;
+              
+              let px = cx + cos * r;
+              let py = cy + sin * r;
+              
+              if (px < 0 || px > logicalWidth || py < 0 || py > logicalHeight) return;
+              
+              let opacity = code.z < 0.2 ? (code.z / 0.2) : (1.0 - code.z);
+              let fontSize = Math.floor(6 + 11 * code.z);
+              
+              ctx.font = 'bold ' + fontSize + 'px sans-serif';
+              ctx.fillStyle = 'rgba(93, 183, 255, ' + (opacity * 0.35) + ')';
+              ctx.fillText(code.char, px, py);
+            });
+
+            // Introduction Delay handler
+            if (initialDelay > 0) {
+              initialDelay--;
+              
+              // Draw stationary faint white center line
+              ctx.beginPath();
+              ctx.lineWidth = 1.5;
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+              ctx.moveTo(0, centerY);
+              ctx.lineTo(logicalWidth, centerY);
+              ctx.stroke();
+
+              // Trigger state label fade in right at 3.0s
+              if (initialDelay === 0) {
+                updateState();
+              }
+              return;
+            }
+
+            // Base amplitudes LERP
+            waveLines.forEach(wl => {
+              wl.amp += (wl.targetAmp - wl.amp) * 0.04;
+            });
+
+            stateTimer += 1;
+            
+            if (stateTimer >= 300) {
+              stateTimer = 0;
+              currentStateIdx = (currentStateIdx + 1) % stateData.length;
+              updateState();
+            }
+
+            const currentWavyState = stateData[currentStateIdx].isWavy;
+
+            // Sweeper transition coordinates
+            const progress = stateTimer / 150; // Reaches full screen at frame 150 (2.5s)
+            
+            let dotX;
+            let showStraightDot = false;
+            let straightDotX = 0;
+            
+            if (!currentWavyState) {
+              const maxX = logicalWidth;
+              straightDotX = progress * maxX;
+              dotX = straightDotX;
+              if (straightDotX <= maxX) {
+                showStraightDot = true;
+              }
+            } else {
+              const maxX = logicalWidth - 55;
+              dotX = Math.min(1.0, progress) * maxX;
+            }
+
+            // Blends amplitudes behind/ahead of the sweeping dot to create a propagation wave
+            function getLocalAmp(wl, x) {
+              const transitionZone = 80;
+              const dist = x - dotX;
+              
+              let blend;
+              if (dist < -transitionZone / 2) {
+                blend = 1;
+              } else if (dist > transitionZone / 2) {
+                blend = 0;
+              } else {
+                blend = 0.5 - dist / transitionZone;
+              }
+              
+              return wl.targetAmp * blend + wl.prevAmp * (1 - blend);
+            }
+
+            const activeMaxX = currentWavyState ? (logicalWidth - 55) : logicalWidth;
+
+            // Draw wave paths in 3 overlapping passes to simulate neon/laser bloom photographic effects
+            // Pass 1: Wide Soft Glow Backdrop
+            waveLines.forEach(wl => {
+              ctx.beginPath();
+              ctx.lineWidth = wl.width * 5;
+              ctx.strokeStyle = wl.glowColor;
+              ctx.lineCap = 'round';
+              ctx.lineJoin = 'round';
+
+              for (let x = 0; x <= activeMaxX; x += 3) {
+                const progressRatio = x / logicalWidth;
+                const envelope = Math.pow(progressRatio, 1.2);
+                const localAmp = getLocalAmp(wl, x);
+                const y = centerY + envelope * localAmp * (Math.sin(x * wl.freq + t * wl.speed * 10 + wl.phase) + 0.25 * Math.sin(x * wl.freq * 2.2 - t * 0.5));
+                
+                if (x === 0) {
+                  ctx.moveTo(x, y);
+                } else {
+                  ctx.lineTo(x, y);
+                }
+              }
+              ctx.stroke();
+            });
+
+            // Pass 2: Mid-intensity Inner Glow
+            waveLines.forEach(wl => {
+              ctx.beginPath();
+              ctx.lineWidth = wl.width * 2.2;
+              ctx.strokeStyle = wl.color === '#FFFFFF' ? 'rgba(93, 183, 255, 0.5)' : wl.glowColor.replace('0.22', '0.6').replace('0.28', '0.6');
+              ctx.lineCap = 'round';
+              ctx.lineJoin = 'round';
+
+              for (let x = 0; x <= activeMaxX; x += 3) {
+                const progressRatio = x / logicalWidth;
+                const envelope = Math.pow(progressRatio, 1.2);
+                const localAmp = getLocalAmp(wl, x);
+                const y = centerY + envelope * localAmp * (Math.sin(x * wl.freq + t * wl.speed * 10 + wl.phase) + 0.25 * Math.sin(x * wl.freq * 2.2 - t * 0.5));
+                
+                if (x === 0) {
+                  ctx.moveTo(x, y);
+                } else {
+                  ctx.lineTo(x, y);
+                }
+              }
+              ctx.stroke();
+            });
+
+            // Pass 3: High-intensity Core Light
+            waveLines.forEach(wl => {
+              ctx.beginPath();
+              ctx.lineWidth = wl.width;
+              ctx.strokeStyle = wl.color;
+              ctx.lineCap = 'round';
+              ctx.lineJoin = 'round';
+
+              for (let x = 0; x <= activeMaxX; x += 3) {
+                const progressRatio = x / logicalWidth;
+                const envelope = Math.pow(progressRatio, 1.2);
+                const localAmp = getLocalAmp(wl, x);
+                const y = centerY + envelope * localAmp * (Math.sin(x * wl.freq + t * wl.speed * 10 + wl.phase) + 0.25 * Math.sin(x * wl.freq * 2.2 - t * 0.5));
+                
+                if (x === 0) {
+                  ctx.moveTo(x, y);
+                } else {
+                  ctx.lineTo(x, y);
+                }
+              }
+              ctx.stroke();
+            });
+
+            // Draw glowing flares
+            if (!currentWavyState) {
+              if (showStraightDot) {
+                drawGlowDot(straightDotX, centerY, 6.5, 'rgba(8, 102, 255, 0.35)');
+              }
+            } else {
+              // Wavy State: Three flares at the active tips of the waves
+              const envelope = Math.pow(dotX / logicalWidth, 1.2);
+              waveLines.forEach(wl => {
+                const localAmp = getLocalAmp(wl, dotX);
+                const dotY = centerY + envelope * localAmp * (Math.sin(dotX * wl.freq + t * wl.speed * 10 + wl.phase) + 0.25 * Math.sin(dotX * wl.freq * 2.2 - t * 0.5));
+                drawGlowDot(dotX, dotY, 5, wl.glowColor);
+              });
+            }
+          }
+
+          animate();
+        }
+
+      });
+    </script>
+
+  </body>
+</html>
