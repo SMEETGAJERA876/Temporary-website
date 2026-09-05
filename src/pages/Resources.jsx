@@ -1,6 +1,6 @@
 import React from 'react';
 import PageHero from '../components/PageHero';
-import CaseStudiesSection from '../components/CaseStudiesSection';
+import TransformationStories from '../components/TransformationStories';
 import ProcessSection from '../components/ProcessSection';
 import TestimonialSection from '../components/TestimonialSection';
 import FinalCTA from '../components/FinalCTA';
@@ -8,10 +8,11 @@ import FinalCTA from '../components/FinalCTA';
 export default function Resources() {
   return (
     <>
-      <PageHero eyebrow="PROOF & METHOD" title="How the work actually goes.">
-        Case studies, delivery methodology and the standards we hold ourselves to.
+      <PageHero eyebrow="TRANSFORMATION STORIES" title="Real Challenges. Real Transformation.">
+        How our engagements actually go: the challenge, the approach, the solution, the technology
+        and the business outcome that resulted.
       </PageHero>
-      <CaseStudiesSection />
+      <TransformationStories />
       <ProcessSection />
       <TestimonialSection />
       <FinalCTA />

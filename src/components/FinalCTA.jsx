@@ -1,6 +1,7 @@
 ﻿import ScrollText from './ScrollText';
 import React from 'react';
 import { ArrowRight, Mail } from 'lucide-react';
+import { Link } from '../router';
 
 export default function FinalCTA() {
   return (
@@ -20,33 +21,34 @@ export default function FinalCTA() {
         </div>
 
         {/* Big Headline */}
-        <ScrollText as="h2" from="#6E79C4" className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white leading-[1.08] tracking-tight mb-6">Ready to Build What Comes Next?</ScrollText>
+        <ScrollText as="h2" from="#6E79C4" className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white leading-[1.08] tracking-tight mb-6">Let's Engineer What's Next</ScrollText>
 
         {/* Supporting Paragraph */}
         <p
           className="text-base sm:text-xl text-white/85 max-w-2xl mx-auto font-normal leading-relaxed mb-10"
         >
-          Partner with our multi-disciplinary engineering and advisory teams to unlock scalable growth and operational excellence.
+          Whether you are modernizing a plant, building an industrial data platform, deploying AI or
+          transforming your operations, DHGsoft can help turn your vision into measurable results.
         </p>
 
         {/* Orange CTA Button */}
         <div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto"
         >
-          <a
-            href="mailto:contact@dhgsoft.com"
+          <Link
+            to="/contact"
             className="sheen w-full sm:w-auto px-10 py-4 rounded-[8px] bg-[#E86A1C] hover:bg-[#d55e15] text-white font-bold text-[15px] shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group"
           >
-            <span>Let's Talk</span>
+            <span>Talk to an Expert</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
 
           <a
-            href="tel:+1000000000"
+            href="mailto:contact@dhgsoft.com"
             className="w-full sm:w-auto px-8 py-4 rounded-[8px] bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-[15px] transition-all duration-200 flex items-center justify-center gap-2"
           >
             <Mail className="w-4 h-4 text-white/80" />
-            <span>Schedule Briefing</span>
+            <span>Start a Conversation</span>
           </a>
         </div>
 

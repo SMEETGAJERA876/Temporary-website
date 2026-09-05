@@ -1,43 +1,43 @@
 ﻿import ScrollText from './ScrollText';
 import React from 'react';
-import { ArrowUpRight, Cpu, Layers, Compass, Cog, Database } from 'lucide-react';
+import { ArrowUpRight, Compass, Factory, Cog, Database, Cloud, LifeBuoy } from 'lucide-react';
 
 const services = [
   {
     num: '01',
-    title: 'Digital Transformation',
-    icon: Layers,
-    desc: 'Modernizing legacy architectures into resilient, cloud-native digital ecosystems built for enterprise scale.'
+    title: 'Consulting & Transformation',
+    icon: Compass,
+    desc: 'Shaping the roadmap for operational modernization, aligning technology investment with business outcomes.'
   },
   {
     num: '02',
-    title: 'Process Optimization',
-    icon: Cog,
-    desc: 'Streamlining end-to-end operational workflows to eliminate bottlenecks and accelerate cycle velocity.'
+    title: 'Industrial Engineering',
+    icon: Factory,
+    desc: 'Deep plant and process engineering expertise applied to design, upgrade and de-risk industrial assets.'
   },
   {
     num: '03',
-    title: 'Technology Consulting',
-    icon: Cpu,
-    desc: 'Advising executive leaders on technical roadmaps, stack modernization, and risk-managed digital deployments.'
+    title: 'Automation & Integration',
+    icon: Cog,
+    desc: 'Connecting control systems, equipment and software into a single, reliable operating architecture.'
   },
   {
     num: '04',
-    title: 'Business Strategy',
-    icon: Compass,
-    desc: 'Aligning business models with emerging technology capabilities to establish sustainable competitive advantages.'
+    title: 'Data & Artificial Intelligence',
+    icon: Database,
+    desc: 'Building trusted industrial data foundations and applying AI to turn information into decisions.'
   },
   {
     num: '05',
-    title: 'Intelligent Automation',
-    icon: Cpu,
-    desc: 'Designing deterministic robotic workflows and autonomous AI agents to automate complex repetitive processes.'
+    title: 'Digital & Cloud',
+    icon: Cloud,
+    desc: 'Scalable cloud platforms and digital applications that extend the plant floor to the enterprise.'
   },
   {
     num: '06',
-    title: 'Data & Analytics',
-    icon: Database,
-    desc: 'Unifying fragmented data lakes into real-time analytical pipelines that deliver executive clarity and ROI.'
+    title: 'Managed Services',
+    icon: LifeBuoy,
+    desc: 'Ongoing operation, support and continuous improvement of the systems we design and deploy.'
   }
 ];
 
@@ -50,12 +50,12 @@ export default function ServicesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div className="max-w-xl">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#0111A2] uppercase mb-3 block">
-              ● OUR EXPERTISE
+              ● WHAT WE DO
             </span>
-            <ScrollText as="h2" className="text-4xl sm:text-5xl font-display font-extrabold text-[#0111A2] tracking-tight">What We Do</ScrollText>
+            <ScrollText as="h2" className="text-4xl sm:text-5xl font-display font-extrabold text-[#0111A2] tracking-tight">Capabilities That Move Industry Forward</ScrollText>
           </div>
           <p className="reveal-up text-base text-[#5B6475] max-w-md mt-4 md:mt-0 font-normal leading-relaxed">
-            We deliver end-to-end engineering, advisory, and digital transformation solutions that drive measurable performance.
+            Six integrated capabilities spanning consulting, engineering, automation, data, cloud and managed operations — carried end to end by one team.
           </p>
         </div>
 

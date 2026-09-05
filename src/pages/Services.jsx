@@ -7,8 +7,8 @@ import FinalCTA from '../components/FinalCTA';
 export default function Services() {
   return (
     <>
-      <PageHero eyebrow="OUR EXPERTISE" title="Services that carry an engagement end to end.">
-        From the first architecture review to the production rollout and the quarter after it —
+      <PageHero eyebrow="WHAT WE DO" title="Capabilities That Move Industry Forward.">
+        Consulting, industrial engineering, automation, data & AI, digital & cloud, and managed services —
         one team, one accountable delivery line.
       </PageHero>
       <ServicesSection />

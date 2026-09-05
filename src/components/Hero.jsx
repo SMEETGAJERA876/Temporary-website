@@ -25,13 +25,13 @@ export default function Hero() {
               className="fade-up-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] bg-[#EEF2FF] border border-[#0111A2]/15 text-xs font-mono font-bold tracking-[0.18em] text-[#0111A2] uppercase mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#E86A1C]" />
-              <span>SMARTER BUSINESS SOLUTIONS</span>
+              <span>ENGINEERING INTELLIGENT INDUSTRIES</span>
             </div>
 
             {/* Large H1 Headline in PRIMARY BLUE */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold text-[#0111A2] leading-[1.06] tracking-tight mb-6">
-              <span className="mask-line"><span style={{ '--d': '0.15s' }}>Transforming Ideas Into</span></span>
-              <span className="mask-line"><span style={{ '--d': '0.28s' }}>Meaningful Results.</span></span>
+              <span className="mask-line"><span style={{ '--d': '0.15s' }}>Engineering Intelligent</span></span>
+              <span className="mask-line"><span style={{ '--d': '0.28s' }}>Industries.</span></span>
             </h1>
 
             {/* Supporting Paragraph */}
@@ -39,7 +39,7 @@ export default function Hero() {
               style={{ '--d': '0.42s' }}
               className="fade-up-in text-base sm:text-lg md:text-xl text-[#5B6475] leading-relaxed max-w-xl mb-10 font-normal"
             >
-              We help organizations simplify complex challenges, improve processes, and create scalable digital experiences that deliver measurable impact.
+              Transforming industrial operations through engineering, automation, data, AI and digital technologies.
             </p>
 
             {/* CTA Buttons */}
@@ -49,19 +49,19 @@ export default function Hero() {
             >
               {/* PRIMARY CTA */}
               <Link
-                to="/contact"
+                to="/services"
                 className="sheen px-8 py-4 rounded-[8px] bg-[#E86A1C] hover:bg-[#d55e15] text-white font-semibold text-[15px] shadow-sm hover:shadow-md transition-all duration-200 text-center flex items-center justify-center gap-2 group"
               >
-                <span>Start a Conversation</span>
+                <span>Explore Our Capabilities</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
 
               {/* SECONDARY CTA */}
               <Link
-                to="/solutions"
+                to="/contact"
                 className="px-8 py-4 rounded-[8px] bg-white hover:bg-[#EEF2FF]/60 border-2 border-[#0111A2] text-[#0111A2] font-semibold text-[15px] transition-all duration-200 text-center"
               >
-                Explore Solutions
+                Talk to an Expert
               </Link>
             </div>
 
@@ -72,15 +72,15 @@ export default function Hero() {
             >
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Enterprise Grade</span>
+                <span>Engineering-Led</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Human-Centered</span>
+                <span>Industry Grade</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Measurable ROI</span>
+                <span>Measurable Outcomes</span>
               </div>
             </div>
 

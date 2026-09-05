@@ -1,9 +1,9 @@
 import React from 'react';
 
 const items = [
-  'Digital Transformation', 'Process Optimization', 'Cloud Architecture',
-  'Intelligent Automation', 'Data & Analytics', 'Technology Consulting',
-  'Platform Engineering', 'Business Strategy'
+  'Consulting & Transformation', 'Industrial Engineering', 'Automation & Integration',
+  'Data & Artificial Intelligence', 'Digital & Cloud', 'Managed Services',
+  'Industrial AI', 'OT/IT Integration'
 ];
 
 /**

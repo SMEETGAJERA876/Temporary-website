@@ -8,6 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Solutions from './pages/Solutions';
 import Industries from './pages/Industries';
+import Technology from './pages/Technology';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
@@ -18,6 +19,7 @@ const routes = {
   '/services': Services,
   '/solutions': Solutions,
   '/industries': Industries,
+  '/technology': Technology,
   '/resources': Resources,
   '/contact': Contact
 };

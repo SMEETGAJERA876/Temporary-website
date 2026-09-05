@@ -16,18 +16,18 @@ export default function TestimonialSection() {
           </div>
 
           {/* Editorial Testimonial Statement */}
-          <ScrollText as="blockquote" className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold text-[#0111A2] leading-[1.25] tracking-tight mb-10">"dhgsoft transformed our fragmented customer infrastructure into an integrated, automated powerhouse. Their engineering discipline and strategic clarity cut our time-to-market in half."</ScrollText>
+          <ScrollText as="blockquote" className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold text-[#0111A2] leading-[1.25] tracking-tight mb-10">"dhgsoft turned a decade of fragmented plant data into a single, trusted source of truth — and the AI models built on top of it now catch quality issues before they cost us a batch."</ScrollText>
 
           {/* Client Details */}
           <div className="flex items-center gap-4 pt-6 border-t border-[#E2E6EF]">
             <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80"
               alt="Elena Rostova"
               className="w-12 h-12 rounded-full object-cover border border-[#0111A2]/20"
             />
             <div>
               <div className="text-base font-bold text-[#111827]">Elena Rostova</div>
-              <div className="text-xs sm:text-sm text-[#5B6475]">Chief Technology Officer • Apex Financial Global</div>
+              <div className="text-xs sm:text-sm text-[#5B6475]">VP of Operations • Global Chemicals Manufacturer</div>
             </div>
           </div>
         </div>

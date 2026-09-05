@@ -8,9 +8,9 @@ import FinalCTA from '../components/FinalCTA';
 export default function Solutions() {
   return (
     <>
-      <PageHero eyebrow="WHAT WE BUILD" title="Solutions shaped around your goals.">
-        Platforms, pipelines and automation designed for the constraints you actually have,
-        not the reference architecture on a vendor slide.
+      <PageHero eyebrow="SOLUTIONS" title="Solutions Designed Around Business Outcomes.">
+        Every solution starts with a business challenge, not a technology stack — and ends with
+        a measurable outcome.
       </PageHero>
       <BlueFeatureSection />
       <CapabilityStrip />

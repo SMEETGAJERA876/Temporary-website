@@ -7,9 +7,8 @@ import FinalCTA from '../components/FinalCTA';
 export default function Industries() {
   return (
     <>
-      <PageHero eyebrow="SECTORS WE SERVE" title="Depth in the industries we work in.">
-        Regulation, legacy estates and margin pressure look different in every sector.
-        We bring the context, not just the stack.
+      <PageHero eyebrow="INDUSTRIES" title="Deep Expertise. Industry by Industry.">
+        Technology is only valuable when it understands the business it serves.
       </PageHero>
       <IndustriesSection />
       <CaseStudiesSection />

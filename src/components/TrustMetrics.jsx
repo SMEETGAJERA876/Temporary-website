@@ -39,9 +39,9 @@ function AnimatedCounter({ target, suffix = '', duration = 2.0 }) {
 }
 
 const metrics = [
-  { target: 10, suffix: '+', label: 'Years Experience', desc: 'Proven enterprise technology consulting track record.' },
-  { target: 150, suffix: '+', label: 'Projects Delivered', desc: 'Transforming digital architecture for global brands.' },
-  { target: 40, suffix: '+', label: 'Industry Solutions', desc: 'Tailored business systems across key market sectors.' },
+  { target: 10, suffix: '+', label: 'Years Experience', desc: 'Proven track record across industrial engineering and automation.' },
+  { target: 150, suffix: '+', label: 'Projects Delivered', desc: 'Deployed across process, discrete and hybrid operations.' },
+  { target: 10, suffix: '+', label: 'Industries Served', desc: 'Deep domain expertise across regulated and heavy industry.' },
   { target: 98, suffix: '%', label: 'Client Satisfaction', desc: 'Long-term partnerships rooted in measurable outcomes.' }
 ];
 
@@ -55,7 +55,7 @@ export default function TrustMetrics() {
           <p className="text-xs font-mono font-bold tracking-[0.2em] text-[#0111A2] uppercase mb-2">
             ● PROVEN PERFORMANCE
           </p>
-          <ScrollText as="h2" className="text-2xl sm:text-3xl font-display font-extrabold text-[#111827]">Trusted by teams building what comes next.</ScrollText>
+          <ScrollText as="h2" className="text-2xl sm:text-3xl font-display font-extrabold text-[#111827]">Trusted by industrial teams building what comes next.</ScrollText>
         </div>
 
         {/* 4 Metric Cards Grid */}

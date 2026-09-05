@@ -21,7 +21,7 @@ export default function Footer() {
             </Link>
             
             <p className="text-sm text-slate-300 leading-relaxed max-w-sm mb-6 font-normal">
-              dhgsoft provides premium corporate technology consulting, intelligent automation, and cloud software engineering for forward-thinking global enterprises.
+              dhgsoft engineers intelligent industries — transforming industrial operations through engineering, automation, data, AI and digital technologies.
             </p>
 
             {/* Social Links */}
@@ -50,11 +50,12 @@ export default function Footer() {
               Services
             </h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><Link to="/services" className="hover:text-white transition-colors">Digital Transformation</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Process Optimization</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Technology Consulting</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Business Strategy</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Data & Analytics</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Consulting & Transformation</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Industrial Engineering</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Automation & Integration</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Data & Artificial Intelligence</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Digital & Cloud</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Managed Services</Link></li>
             </ul>
           </div>
 
@@ -64,25 +65,25 @@ export default function Footer() {
               Solutions
             </h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><Link to="/solutions" className="hover:text-white transition-colors">Cloud Architecture</Link></li>
-              <li><Link to="/solutions" className="hover:text-white transition-colors">Intelligent AI Agents</Link></li>
-              <li><Link to="/solutions" className="hover:text-white transition-colors">Enterprise Security</Link></li>
-              <li><Link to="/solutions" className="hover:text-white transition-colors">Workflow Automation</Link></li>
-              <li><Link to="/solutions" className="hover:text-white transition-colors">Data Pipelines</Link></li>
+              <li><Link to="/solutions" className="hover:text-white transition-colors">AI-Powered Operations</Link></li>
+              <li><Link to="/solutions" className="hover:text-white transition-colors">Industrial Data Platform</Link></li>
+              <li><Link to="/solutions" className="hover:text-white transition-colors">Predictive Maintenance</Link></li>
+              <li><Link to="/solutions" className="hover:text-white transition-colors">Yield Optimization</Link></li>
+              <li><Link to="/technology" className="hover:text-white transition-colors">Technology</Link></li>
             </ul>
           </div>
 
-          {/* Column 4: Resources (2 cols) */}
+          {/* Column 4: Case Studies (2 cols) */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#E86A1C] mb-5">
-              Resources
+              Case Studies
             </h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><Link to="/resources" className="hover:text-white transition-colors">Case Studies</Link></li>
+              <li><Link to="/resources" className="hover:text-white transition-colors">Transformation Stories</Link></li>
               <li><Link to="/resources" className="hover:text-white transition-colors">Methodology</Link></li>
-              <li><Link to="/resources" className="hover:text-white transition-colors">Client Portal</Link></li>
-              <li><Link to="/resources" className="hover:text-white transition-colors">Security Standards</Link></li>
-              <li><Link to="/resources" className="hover:text-white transition-colors">Careers</Link></li>
+              <li><Link to="/industries" className="hover:text-white transition-colors">Industries</Link></li>
+              <li><a href="#login" className="hover:text-white transition-colors">Client Portal</a></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">Careers</Link></li>
             </ul>
           </div>
 

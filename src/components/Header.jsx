@@ -10,7 +10,8 @@ const navItems = [
   { name: 'Services', href: '/services' },
   { name: 'Solutions', href: '/solutions' },
   { name: 'Industries', href: '/industries' },
-  { name: 'Resources', href: '/resources' },
+  { name: 'Technology', href: '/technology' },
+  { name: 'Case Studies', href: '/resources' },
 ];
 
 export default function Header() {
@@ -60,7 +61,7 @@ export default function Header() {
           </Link>
 
           {/* CENTER / RIGHT: Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8 text-[15px] font-medium text-[#5B6475]">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] xl:text-[15px] font-medium text-[#5B6475]">
             {navItems.map((item) => {
               const active = path === item.href;
               return (
@@ -84,10 +85,10 @@ export default function Header() {
           </nav>
 
           {/* RIGHT SIDE: Secondary Login + Primary Orange CTA */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             <a
               href="#login"
-              className="text-[14px] font-semibold text-[#5B6475] hover:text-[#0111A2] transition-colors"
+              className="hidden xl:inline text-[14px] font-semibold text-[#5B6475] hover:text-[#0111A2] transition-colors"
             >
               Client Portal
             </a>
@@ -157,7 +158,7 @@ export default function Header() {
                 Get Started
               </Link>
               <div className="text-xs text-[#5B6475] text-center font-mono">
-                dhgsoft • Smarter Business Solutions
+                dhgsoft • Engineering Intelligent Industries
               </div>
             </div>
           </motion.div>
