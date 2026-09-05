@@ -12,8 +12,11 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left border-t border-[#E2E6EF]">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left border-t border-[#E2E6EF] relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-20">

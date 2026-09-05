@@ -8,8 +8,8 @@ export default function Services() {
   return (
     <>
       <PageHero eyebrow="WHAT WE DO" title="Capabilities That Move Industry Forward.">
-        Consulting, industrial engineering, automation, data & AI, digital & cloud, and managed services —
-        one team, one accountable delivery line.
+        From digital transformation strategy and OT/IT integration to AI, cybersecurity and
+        managed operations — one team, one accountable delivery line.
       </PageHero>
       <ServicesSection />
       <ProcessSection />

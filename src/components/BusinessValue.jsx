@@ -27,8 +27,11 @@ const pillars = [
 
 export default function BusinessValue() {
   return (
-    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left border-t border-[#E2E6EF]">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left border-t border-[#E2E6EF] relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-16">
@@ -50,7 +53,7 @@ export default function BusinessValue() {
               <div
                 key={p.title}
                 style={{ '--d': `${idx * 0.08}s` }}
-                className="reveal-up hover:-translate-y-1.5 group p-8 rounded-[12px] bg-white border border-[#E2E6EF] hover:bg-[#0111A2] hover:border-[#0111A2] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between min-h-[220px]"
+                className="reveal-up hover:-translate-y-1.5 group p-8 rounded-[12px] bg-white border border-[#E2E6EF] hover:bg-[#0111A2] hover:border-[#0111A2] transition-all duration-300 shadow-brand-hover flex flex-col justify-between min-h-[220px]"
               >
                 <div className="w-12 h-12 rounded-[8px] bg-[#EEF2FF] group-hover:bg-white/10 flex items-center justify-center text-[#0111A2] group-hover:text-white transition-all mb-6">
                   <Icon className="w-6 h-6" />

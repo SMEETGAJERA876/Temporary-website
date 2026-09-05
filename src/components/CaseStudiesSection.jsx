@@ -8,7 +8,7 @@ const projects = [
     category: 'AI-DRIVEN YIELD IMPROVEMENT',
     title: 'Turning process data into a measurable yield gain.',
     desc: 'Unified historian and lab data for a global chemicals manufacturer, then modeled the drivers of yield variation in real time.',
-    image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80',
     metric: '+6.4% Yield'
   },
   {
@@ -29,9 +29,12 @@ const projects = [
 
 export default function CaseStudiesSection() {
   return (
-    <section id="resources" className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left">
-      <div className="max-w-7xl mx-auto">
-        
+    <section id="resources" className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div className="max-w-xl">
@@ -52,7 +55,7 @@ export default function CaseStudiesSection() {
               to="/resources"
               key={proj.title}
               style={{ '--d': `${idx * 0.1}s` }}
-              className="reveal-up hover:-translate-y-2 group rounded-[16px] overflow-hidden border border-[#E2E6EF] bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="reveal-up hover:-translate-y-2 group rounded-[16px] overflow-hidden border border-[#E2E6EF] bg-white shadow-brand-hover transition-all duration-300 flex flex-col justify-between"
             >
               {/* Top Image Container */}
               <div style={{ '--d': `${idx * 0.1 + 0.12}s` }} className="wipe h-60 sm:h-64 w-full relative overflow-hidden bg-slate-100">

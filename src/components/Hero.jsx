@@ -1,130 +1,115 @@
-﻿import React from 'react';
-import Parallax from './Parallax';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { Link } from '../router';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import HeroField from './HeroField';
+import MagneticButton from './MagneticButton';
+
+const pillars = ['Engineering', 'Automation', 'Data', 'Artificial Intelligence', 'Digital'];
 
 export default function Hero() {
+  const heroRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+
   return (
-    <section id="home" className="relative pt-32 lg:pt-40 pb-20 md:pb-28 px-6 md:px-8 bg-white font-sans overflow-hidden">
-      {/* Background Subtle Corporate Grid */}
-      <div className="absolute inset-0 bg-corporate-grid opacity-60 pointer-events-none" />
-      
-      {/* Background Abstract Geometric Shapes */}
-      <div className="drift absolute top-20 right-10 w-[550px] h-[550px] bg-[#EEF2FF] rounded-full blur-[90px] pointer-events-none -z-0" />
-      <div className="drift-alt absolute -bottom-10 left-1/3 w-[400px] h-[400px] bg-[#EEF2FF]/70 rounded-full blur-[80px] pointer-events-none -z-0" />
+    <section
+      id="home"
+      ref={heroRef}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden font-sans"
+      style={{ background: 'linear-gradient(160deg, #000E2E 0%, #0111A2 62%, #0111A2 100%)' }}
+    >
+      <HeroField />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* LEFT COLUMN: Eyebrow, Heading, Paragraph & CTAs */}
-          <div className="lg:col-span-7 text-left">
-            
-            {/* Small Eyebrow Label */}
-            <div
-              style={{ '--d': '0.05s' }}
-              className="fade-up-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[6px] bg-[#EEF2FF] border border-[#0111A2]/15 text-xs font-mono font-bold tracking-[0.18em] text-[#0111A2] uppercase mb-6"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E86A1C]" />
-              <span>ENGINEERING INTELLIGENT INDUSTRIES</span>
-            </div>
+      {/* Soft cinematic merge into the next section */}
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white/[0.06] to-transparent pointer-events-none" />
 
-            {/* Large H1 Headline in PRIMARY BLUE */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold text-[#0111A2] leading-[1.06] tracking-tight mb-6">
-              <span className="mask-line"><span style={{ '--d': '0.15s' }}>Engineering Intelligent</span></span>
-              <span className="mask-line"><span style={{ '--d': '0.28s' }}>Industries.</span></span>
-            </h1>
+      <motion.div
+        style={{ y: reduceMotion ? 0 : contentY, opacity: reduceMotion ? 1 : contentOpacity }}
+        className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 pt-32 pb-20"
+      >
+        <div className="max-w-3xl">
+          {/* Eyebrow */}
+          <div
+            style={{ '--d': '0.05s' }}
+            className="fade-up-in flex items-center gap-3 mb-8"
+          >
+            <span className="w-8 h-px bg-[#E86A1C]" />
+            <span className="text-xs font-mono font-bold tracking-[0.28em] text-white/60 uppercase">
+              dhgsoft — Industrial Engineering &amp; AI
+            </span>
+          </div>
 
-            {/* Supporting Paragraph */}
-            <p
-              style={{ '--d': '0.42s' }}
-              className="fade-up-in text-base sm:text-lg md:text-xl text-[#5B6475] leading-relaxed max-w-xl mb-10 font-normal"
-            >
-              Transforming industrial operations through engineering, automation, data, AI and digital technologies.
-            </p>
+          {/* Oversized editorial headline */}
+          <h1 className="text-[13vw] sm:text-6xl md:text-7xl lg:text-[6rem] font-display font-extrabold text-white leading-[0.98] tracking-tight mb-8">
+            <span className="mask-line"><span style={{ '--d': '0.15s' }}>Engineering</span></span>
+            <span className="mask-line">
+              <span style={{ '--d': '0.26s' }} className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#E86A1C]">
+                Intelligent Industries.
+              </span>
+            </span>
+          </h1>
 
-            {/* CTA Buttons */}
-            <div
-              style={{ '--d': '0.52s' }}
-              className="fade-up-in flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12"
-            >
-              {/* PRIMARY CTA */}
+          {/* Supporting line */}
+          <p
+            style={{ '--d': '0.4s' }}
+            className="fade-up-in text-base sm:text-lg text-white/65 leading-relaxed max-w-md mb-12 font-normal"
+          >
+            Transforming industrial operations through engineering, automation, data and AI.
+          </p>
+
+          {/* CTAs */}
+          <div style={{ '--d': '0.5s' }} className="fade-up-in flex flex-wrap items-center gap-5">
+            <MagneticButton>
               <Link
-                to="/services"
-                className="sheen px-8 py-4 rounded-[8px] bg-[#E86A1C] hover:bg-[#d55e15] text-white font-semibold text-[15px] shadow-sm hover:shadow-md transition-all duration-200 text-center flex items-center justify-center gap-2 group"
+                to="/solutions"
+                className="sheen inline-flex items-center gap-2 px-8 py-4 rounded-[8px] bg-[#E86A1C] hover:bg-[#d55e15] text-white font-semibold text-[15px] shadow-lg shadow-black/20 transition-colors duration-200 group"
               >
-                <span>Explore Our Capabilities</span>
+                <span>Explore Solutions</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
+            </MagneticButton>
 
-              {/* SECONDARY CTA */}
+            <MagneticButton strength={0.35}>
               <Link
                 to="/contact"
-                className="px-8 py-4 rounded-[8px] bg-white hover:bg-[#EEF2FF]/60 border-2 border-[#0111A2] text-[#0111A2] font-semibold text-[15px] transition-all duration-200 text-center"
+                className="inline-flex items-center gap-2 px-2 py-4 text-white/80 hover:text-white font-semibold text-[15px] transition-colors duration-200 border-b border-white/25 hover:border-white/70"
               >
-                Talk to an Expert
+                Let's Talk
               </Link>
-            </div>
-
-            {/* Key Value Points */}
-            <div
-              style={{ '--d': '0.62s' }}
-              className="fade-up-in flex flex-wrap items-center gap-6 pt-6 border-t border-[#E2E6EF] text-sm text-[#5B6475] font-medium"
-            >
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Engineering-Led</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Industry Grade</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-[#0111A2]" />
-                <span>Measurable Outcomes</span>
-              </div>
-            </div>
-
+            </MagneticButton>
           </div>
+        </div>
 
-          {/* RIGHT COLUMN: Artistic Geometric Composition + Human Image */}
-          <div
-            style={{ '--d': '0.3s' }}
-            className="fade-up-in lg:col-span-5 relative flex items-center justify-center"
-          >
-            {/* Background Geometric Layer 1: Abstract Oversized Blue Block */}
-            <div className="absolute -top-6 -right-6 w-72 h-72 rounded-[24px] bg-[#0111A2]/10 -rotate-6 pointer-events-none" />
-            
-            {/* Background Geometric Layer 2: Translucent Soft Blue Card */}
-            <div className="absolute -bottom-6 -left-6 w-64 h-64 rounded-[24px] bg-[#EEF2FF] border border-[#0111A2]/15 rotate-3 pointer-events-none" />
+        {/* Editorial index strip */}
+        <div
+          style={{ '--d': '0.62s' }}
+          className="fade-up-in flex flex-wrap gap-x-8 gap-y-2 mt-24 md:mt-32 pt-6 border-t border-white/10"
+        >
+          {pillars.map((p, i) => (
+            <span key={p} className="text-[11px] font-mono text-white/35 tracking-wide">
+              <span className="text-white/70">0{i + 1}</span> — {p}
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
-            {/* Main Human/Business Image Container */}
-            <div className="relative z-10 w-full max-w-md rounded-[16px] overflow-hidden border border-[#E2E6EF] shadow-xl bg-white">
-              <Parallax amount={34}>
-                <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80"
-                  alt="Executive Technology Consultant at dhgsoft"
-                  className="w-full h-[460px] sm:h-[520px] object-cover object-top scale-110"
-                  loading="eager"
-                />
-              </Parallax>
-
-              {/* Subtle Floating Stat Card */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-[10px] bg-white/95 backdrop-blur-md border border-[#E2E6EF] shadow-lg flex items-center justify-between text-left">
-                <div>
-                  <div className="text-xs font-mono font-bold text-[#0111A2] uppercase tracking-wider">Client Impact</div>
-                  <div className="text-base font-display font-extrabold text-[#111827]">98% Success Benchmark</div>
-                </div>
-                <span className="w-3 h-3 rounded-full bg-[#E86A1C] animate-pulse" />
-              </div>
-            </div>
-
-          </div>
-
+      {/* Scroll cue */}
+      <div className="hidden sm:flex absolute bottom-10 left-6 md:left-10 lg:left-16 items-center gap-3 text-white/40 z-10">
+        <span className="text-[10px] font-mono uppercase tracking-[0.25em]">Scroll</span>
+        <div className="relative w-px h-12 bg-white/15 overflow-hidden">
+          {!reduceMotion && (
+            <motion.div
+              className="absolute top-0 left-0 w-px h-4 bg-white/70"
+              animate={{ y: [0, 32, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          )}
         </div>
       </div>
-
-      {/* Thin BLUE Decorative Strip at bottom of Hero */}
-      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#0111A2] to-transparent" />
     </section>
   );
 }

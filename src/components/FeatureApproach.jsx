@@ -6,8 +6,11 @@ import { Check, ArrowRight } from 'lucide-react';
 
 export default function FeatureApproach() {
   return (
-    <section id="solutions" className="py-28 md:py-36 px-6 md:px-8 bg-[#F5F7FA] font-sans border-t border-[#E2E6EF]">
-      <div className="max-w-7xl mx-auto">
+    <section id="solutions" className="py-28 md:py-36 px-6 md:px-8 bg-[#F5F7FA] font-sans border-t border-[#E2E6EF] relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-white rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#E86A1C]/5 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* LEFT: Large High-End Product / Human Visual */}

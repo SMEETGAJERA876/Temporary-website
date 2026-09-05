@@ -4,9 +4,12 @@ import { Quote } from 'lucide-react';
 
 export default function TestimonialSection() {
   return (
-    <section id="about" className="py-28 md:py-36 px-6 md:px-8 bg-[#F5F7FA] font-sans text-left border-t border-[#E2E6EF]">
-      <div className="max-w-5xl mx-auto">
-        
+    <section id="about" className="py-28 md:py-36 px-6 md:px-8 bg-[#F5F7FA] font-sans text-left border-t border-[#E2E6EF] relative overflow-hidden">
+      <div className="drift absolute -top-28 -left-24 w-[420px] h-[420px] bg-white rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -right-24 w-[360px] h-[360px] bg-[#E86A1C]/5 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-5xl mx-auto relative z-10">
+
         <div
           className="reveal-up p-10 sm:p-16 rounded-[16px] bg-white border border-[#E2E6EF] shadow-md relative"
         >

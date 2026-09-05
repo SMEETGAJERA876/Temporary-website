@@ -27,8 +27,11 @@ const layers = [
 
 export default function TechnologyStack() {
   return (
-    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-16">
@@ -49,7 +52,7 @@ export default function TechnologyStack() {
               <div
                 key={layer.title}
                 style={{ '--d': `${idx * 0.08}s` }}
-                className="reveal-up hover:-translate-y-1.5 p-8 rounded-[12px] bg-white border border-[#E2E6EF] hover:border-[#0111A2] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between min-h-[260px]"
+                className="reveal-up hover:-translate-y-1.5 p-8 rounded-[12px] bg-white border border-[#E2E6EF] hover:border-[#0111A2] shadow-brand-hover transition-all duration-300 flex flex-col justify-between min-h-[260px]"
               >
                 <div>
                   <div className="w-12 h-12 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center text-[#0111A2] mb-6">

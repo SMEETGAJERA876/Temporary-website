@@ -87,18 +87,29 @@ export default function BlueFeatureSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
           {solutionCards.map((card, idx) => {
             const Icon = card.icon;
+            const featured = idx === 0;
             return (
               <div
                 key={card.title}
                 style={{ '--d': `${idx * 0.06}s` }}
-                className="reveal-up hover:-translate-y-1.5 p-7 rounded-[12px] bg-white/10 border border-white/15 backdrop-blur-md hover:bg-white/15 transition-all duration-300 flex flex-col justify-between"
+                className={`reveal-up hover:-translate-y-1.5 p-7 rounded-[12px] backdrop-blur-md transition-all duration-300 flex flex-col justify-between ${
+                  featured
+                    ? 'lg:col-span-2 bg-white/15 border-2 border-[#E86A1C]/50 hover:border-[#E86A1C]/70'
+                    : 'bg-white/10 border border-white/15 hover:bg-white/15'
+                }`}
               >
                 <div>
-                  <div className="w-11 h-11 rounded-[8px] bg-white/15 flex items-center justify-center text-white mb-5">
-                    <Icon className="w-5 h-5" />
+                  <div className={`rounded-[8px] flex items-center justify-center text-white mb-5 ${featured ? 'w-14 h-14 bg-[#E86A1C]' : 'w-11 h-11 bg-white/15'}`}>
+                    <Icon className={featured ? 'w-6 h-6' : 'w-5 h-5'} />
                   </div>
 
-                  <h3 className="text-lg font-display font-bold text-white mb-4">
+                  {featured && (
+                    <span className="inline-block text-[10px] font-mono font-bold tracking-widest text-[#E86A1C] uppercase mb-2">
+                      ★ Flagship Solution
+                    </span>
+                  )}
+
+                  <h3 className={`font-display font-bold text-white mb-4 ${featured ? 'text-2xl' : 'text-lg'}`}>
                     {card.title}
                   </h3>
 

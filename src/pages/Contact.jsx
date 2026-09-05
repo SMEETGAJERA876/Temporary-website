@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import TalkToTheRightPerson from '../components/TalkToTheRightPerson';
 import FinalCTA from '../components/FinalCTA';
 
 const channels = [
@@ -17,8 +18,13 @@ export default function Contact() {
         not a sales sequence.
       </PageHero>
 
-      <section className="py-24 md:py-28 px-6 md:px-8 bg-white font-sans">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <TalkToTheRightPerson />
+
+      <section className="py-24 md:py-28 px-6 md:px-8 bg-white font-sans relative overflow-hidden">
+        <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+        <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative z-10">
           {channels.map((c, idx) => {
             const Icon = c.icon;
             const body = (
@@ -34,7 +40,7 @@ export default function Contact() {
             );
 
             const className =
-              'reveal-up hover:-translate-y-1.5 group block p-8 rounded-[12px] bg-white border border-[#E2E6EF] shadow-sm hover:border-[#0111A2] hover:shadow-md transition-all duration-300 text-left';
+              'reveal-up hover:-translate-y-1.5 group block p-8 rounded-[12px] bg-white border border-[#E2E6EF] shadow-brand-hover hover:border-[#0111A2] transition-all duration-300 text-left';
 
             return c.href ? (
               <a key={c.label} href={c.href} style={{ '--d': `${idx * 0.08}s` }} className={className}>

@@ -16,7 +16,7 @@ const stories = [
       { label: 'Yield Improvement', value: '+6.4%' },
       { label: 'Time to Insight', value: '↓ 70%' }
     ],
-    image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80'
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80'
   },
   {
     category: 'ENTERPRISE INDUSTRIAL DATA PLATFORM',
@@ -82,8 +82,11 @@ const stories = [
 
 export default function TransformationStories() {
   return (
-    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-28 md:py-36 px-6 md:px-8 bg-white font-sans text-left relative overflow-hidden">
+      <div className="drift absolute -top-28 -right-24 w-[420px] h-[420px] bg-[#EEF2FF] rounded-full blur-[110px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-28 -left-24 w-[360px] h-[360px] bg-[#EEF2FF]/60 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-16">
@@ -102,10 +105,10 @@ export default function TransformationStories() {
             <div
               key={story.headline}
               style={{ '--d': `${idx * 0.05}s` }}
-              className="reveal-up grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch rounded-[16px] border border-[#E2E6EF] bg-white shadow-sm hover:shadow-lg transition-all duration-300 p-6 sm:p-8 lg:p-10"
+              className="reveal-up grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch rounded-[16px] border border-[#E2E6EF] bg-white shadow-brand-hover transition-all duration-300 p-6 sm:p-8 lg:p-10"
             >
               {/* Left: Narrative */}
-              <div className="lg:col-span-7 flex flex-col justify-between">
+              <div className={`lg:col-span-7 flex flex-col justify-between ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <div>
                   <div className="flex items-center gap-3 mb-5 flex-wrap">
                     <span className="text-xs font-mono font-bold tracking-wider text-[#E86A1C] uppercase">
@@ -143,7 +146,7 @@ export default function TransformationStories() {
               </div>
 
               {/* Right: Visual */}
-              <div className="lg:col-span-5 relative min-h-[240px] rounded-[12px] overflow-hidden border border-[#E2E6EF]">
+              <div className={`lg:col-span-5 relative min-h-[240px] rounded-[12px] overflow-hidden border border-[#E2E6EF] ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <img
                   src={story.image}
                   alt={story.headline}

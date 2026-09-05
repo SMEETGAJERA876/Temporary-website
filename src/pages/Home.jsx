@@ -7,6 +7,7 @@ import IndustriesSection from '../components/IndustriesSection';
 import IntelligentIndustry from '../components/IntelligentIndustry';
 import BlueFeatureSection from '../components/BlueFeatureSection';
 import TechnologyStack from '../components/TechnologyStack';
+import InlineCTA from '../components/InlineCTA';
 import CaseStudiesSection from '../components/CaseStudiesSection';
 import TestimonialSection from '../components/TestimonialSection';
 import ProcessSection from '../components/ProcessSection';
@@ -27,6 +28,7 @@ export default function Home() {
       <IntelligentIndustry />
       <BlueFeatureSection />
       <TechnologyStack />
+      <InlineCTA />
       <CaseStudiesSection />
       <TestimonialSection />
       <ProcessSection />

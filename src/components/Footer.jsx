@@ -9,7 +9,10 @@ export default function Footer() {
       {/* Thin Orange Visual Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#E86A1C] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+      {/* Ambient background motion */}
+      <div className="drift absolute -top-40 right-0 w-[520px] h-[520px] bg-[#0111A2]/30 rounded-full blur-[160px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
         {/* Main 5-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
@@ -50,11 +53,11 @@ export default function Footer() {
               Services
             </h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><Link to="/services" className="hover:text-white transition-colors">Consulting & Transformation</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Industrial Engineering</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Automation & Integration</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Data & Artificial Intelligence</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Digital & Cloud</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Industrial Digital Transformation</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">OT / IT Integration</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Industrial Data Platforms</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">AI & Analytics</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Cybersecurity</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Managed Services</Link></li>
             </ul>
           </div>

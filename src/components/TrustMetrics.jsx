@@ -41,14 +41,17 @@ function AnimatedCounter({ target, suffix = '', duration = 2.0 }) {
 const metrics = [
   { target: 10, suffix: '+', label: 'Years Experience', desc: 'Proven track record across industrial engineering and automation.' },
   { target: 150, suffix: '+', label: 'Projects Delivered', desc: 'Deployed across process, discrete and hybrid operations.' },
-  { target: 10, suffix: '+', label: 'Industries Served', desc: 'Deep domain expertise across regulated and heavy industry.' },
+  { target: 14, suffix: '+', label: 'Industries Served', desc: 'Deep domain expertise across regulated and heavy industry.' },
   { target: 98, suffix: '%', label: 'Client Satisfaction', desc: 'Long-term partnerships rooted in measurable outcomes.' }
 ];
 
 export default function TrustMetrics() {
   return (
-    <section className="py-20 px-6 md:px-8 bg-[#F5F7FA] border-y border-[#E2E6EF] font-sans">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-6 md:px-8 bg-[#F5F7FA] border-y border-[#E2E6EF] font-sans relative overflow-hidden">
+      <div className="drift absolute -top-20 -left-16 w-[360px] h-[360px] bg-white rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+      <div className="drift-alt absolute -bottom-20 -right-16 w-[320px] h-[320px] bg-[#E86A1C]/5 rounded-full blur-[90px] pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Tagline */}
         <div className="text-center mb-14">
@@ -64,7 +67,7 @@ export default function TrustMetrics() {
             <div
               key={m.label}
               style={{ '--d': `${idx * 0.08}s` }}
-              className="reveal-up hover:-translate-y-1 p-8 rounded-[12px] bg-white border border-[#E2E6EF] shadow-sm hover:border-[#0111A2] hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              className="reveal-up hover:-translate-y-1 p-8 rounded-[12px] bg-white border border-[#E2E6EF] shadow-brand-hover hover:border-[#0111A2] transition-all duration-300 flex flex-col justify-between"
             >
               {/* Large BLUE Number */}
               <div className="text-5xl lg:text-6xl font-display font-extrabold text-[#0111A2] tracking-tight mb-3">
